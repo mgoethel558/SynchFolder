@@ -1,0 +1,30 @@
+{
+  "package_version": "1.0",
+  "created_at": "2026-06-22T13:46:19",
+  "project_id": "m_j_camp4_20260605",
+  "project_display_name": "M&J CAMP4",
+  "tenant_host": "my56243466.prod02.cbc.eu.one.cloud.sap",
+  "cbc_url": "https://my56243466.prod02.cbc.eu.one.cloud.sap/sap/public/x4/bc/pe/index.html",
+  "contents": {
+    "sscui_export": "sscui_export.xlsx",
+    "sscui_technical_info": "sscui_technical_info.xlsx",
+    "mapping_output": "sscui_mapping_output.xlsx"
+  },
+  "statistics": {
+    "sscui_total": 2,
+    "complexity_level1": 0,
+    "complexity_level2": 2,
+    "complexity_level3": 0
+  },
+  "sscui_recording_needed": [
+    "102479",
+    "102665"
+  ],
+  "steps_completed": [
+    "cbc_crawler",
+    "tech_crawler",
+    "mapper"
+  ],
+  "operator": "goeth",
+  "app_version": "1.0.0"
+}
