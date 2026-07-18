@@ -1,0 +1,77 @@
+# Zentrale Konfiguration der Torwart-Daten-Pipeline (KeeperPartner).
+# Kann per Umgebungsvariablen in .env ergänzt/überschrieben werden (siehe config.py).
+
+# ---------------------------------------------------------------------------
+# Persistenz
+# ---------------------------------------------------------------------------
+database:
+  # SQLAlchemy-URL. SQLite im MVP; für Postgres z.B.:
+  #   postgresql+psycopg://user:pass@host:5432/dbname
+  # Kann per DATABASE_URL (.env) überschrieben werden.
+  url: "sqlite:///keeper_data.db"
+
+# ---------------------------------------------------------------------------
+# Export (F-09) – statische Dateien für die Homepage
+# ---------------------------------------------------------------------------
+export:
+  dir: "export"
+  attribution: "Datenbasis u.a. Transfermarkt (via Kaggle davidcariboo/player-scores). Nur eigene Aggregationen."
+
+# ---------------------------------------------------------------------------
+# Beobachtete Wettbewerbe (§2.1)
+# Interner Liga-Code -> Anzeige/Metadaten. competition_id = TM-Wettbewerbscode.
+# ---------------------------------------------------------------------------
+competitions:
+  senior:
+    - { code: "L1",  competition_id: "L1",  name: "1. Bundesliga",          country: "Germany", tier: "senior" }
+    - { code: "L2",  competition_id: "L2",  name: "2. Bundesliga",          country: "Germany", tier: "senior" }
+    - { code: "L3",  competition_id: "L3",  name: "3. Liga",                country: "Germany", tier: "senior" }
+    - { code: "GB1", competition_id: "GB1", name: "Premier League",         country: "England", tier: "senior" }
+    - { code: "CL",  competition_id: "CL",  name: "UEFA Champions League",  country: "Europe",  tier: "senior" }
+  youth:
+    - { code: "U19-BL", name: "A-Junioren-Bundesliga (U19)", country: "Germany", tier: "youth" }
+    - { code: "U17-BL", name: "B-Junioren-Bundesliga (U17)", country: "Germany", tier: "youth" }
+    - { code: "U21-NT", name: "U21-Nationalmannschaften",    country: "Intl",    tier: "youth" }
+    - { code: "U19-NT", name: "U19-Nationalmannschaften",    country: "Intl",    tier: "youth" }
+    - { code: "U17-NT", name: "U17-Nationalmannschaften",    country: "Intl",    tier: "youth" }
+
+# ---------------------------------------------------------------------------
+# Quellen (Adapter) – aktivierbar/deaktivierbar (NF-05)
+# ---------------------------------------------------------------------------
+sources:
+  kaggle_playerscores:
+    enabled: true
+    dataset: "davidcariboo/player-scores"
+    # Lokaler Fallback, falls kein Kaggle-Token vorhanden ist:
+    # erwartet CSVs in diesem Verzeichnis (players.csv, clubs.csv, ...).
+    local_csv_dir: "data/kaggle"
+
+  tm_delta_scraper:
+    enabled: false            # standardmäßig aus; erst scharf schalten, wenn Selektoren verifiziert
+    base_url: "https://www.transfermarkt.de"
+    # Transfer-Übersichtsseiten je Wettbewerb; {competition_id} und {season} werden ersetzt.
+    transfers_path: "/{comp_slug}/transfers/wettbewerb/{competition_id}/saison_id/{season}"
+    season: 2024
+
+  tm_youth_scraper:
+    enabled: false            # standardmäßig aus (Nachwuchs, lückenhaft – siehe §12)
+    base_url: "https://www.transfermarkt.de"
+    season: 2024
+
+# ---------------------------------------------------------------------------
+# Politeness / HTTP (NF-02)
+# ---------------------------------------------------------------------------
+http:
+  user_agent: "KeeperPartnerBot/0.1 (+https://keeperpartner.example; contact@keeperpartner.example)"
+  min_delay_seconds: 2.0      # Mindestpause zwischen Requests pro Host
+  timeout_seconds: 20.0
+  max_retries: 3
+  backoff_base_seconds: 1.0
+  respect_robots_txt: true
+
+# ---------------------------------------------------------------------------
+# Logging (NF-06)
+# ---------------------------------------------------------------------------
+logging:
+  level: "INFO"               # DEBUG | INFO | WARNING | ERROR
+  json: false                 # true -> zeilenweises JSON-Log

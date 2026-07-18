@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<!--
+  Vereinfachtes, aber strukturgetreues Fixture einer Transfermarkt-Transfer-
+  Übersichtsseite (nur zu Testzwecken; kein echter TM-Inhalt, keine Marktwerte).
+  Deckt die vom Parser erwarteten Selektoren ab: div.box, table.items,
+  Links auf /verein/<id> und /spieler/<id>, Zu-/Abgänge-Header.
+-->
+<html>
+<body>
+  <div class="box">
+    <h2 class="content-box-headline">
+      <a href="/fc-bayern-munchen/startseite/verein/27">FC Bayern München</a>
+    </h2>
+
+    <h2 class="content-box-headline">Zugänge</h2>
+    <table class="items">
+      <tbody>
+        <tr>
+          <td class="hauptlink">
+            <a href="/manuel-neuer/profil/spieler/1">Manuel Neuer</a>
+          </td>
+          <td>
+            <table class="inline-table">
+              <tr><td>Manuel Neuer</td></tr>
+              <tr><td class="pos">Torwart</td></tr>
+            </table>
+          </td>
+          <td>
+            <a href="/fc-schalke-04/startseite/verein/33">FC Schalke 04</a>
+          </td>
+          <td class="rechts hauptlink">ablösefrei</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2 class="content-box-headline">Abgänge</h2>
+    <table class="items">
+      <tbody>
+        <tr>
+          <td class="hauptlink">
+            <a href="/alexander-nubel/profil/spieler/4">Alexander Nübel</a>
+          </td>
+          <td>
+            <table class="inline-table">
+              <tr><td>Alexander Nübel</td></tr>
+              <tr><td class="pos">Torwart</td></tr>
+            </table>
+          </td>
+          <td>
+            <a href="/vfb-stuttgart/startseite/verein/39">VfB Stuttgart</a>
+          </td>
+          <td class="rechts hauptlink">Leihe</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>

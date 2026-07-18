@@ -1,0 +1,58 @@
+# Täglicher Batch-Lauf der Torwart-Daten-Pipeline (F-10, NF-01).
+# Läuft auf GitHub-Actions-Free-Minuten, ohne eigenen Server.
+name: daily-keeper-pipeline
+
+on:
+  schedule:
+    # Täglich um 04:17 UTC (bewusst nicht auf der vollen Stunde, NF-01/Fleet-Politeness).
+    - cron: "17 4 * * *"
+  workflow_dispatch: {}   # manuell auslösbar
+
+permissions:
+  contents: write         # um export/ zurück ins Repo zu committen
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run pipeline
+        env:
+          # In den Repo-Secrets hinterlegen; ohne Token nutzt der Kaggle-Adapter
+          # den lokalen CSV-Fallback (data/kaggle/*.csv).
+          KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
+          KAGGLE_KEY: ${{ secrets.KAGGLE_KEY }}
+        run: python -m keeper_data.run
+
+      - name: Upload export as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: keeper-export
+          path: export/
+          if-no-files-found: warn
+
+      # Optional: Export ins Repo committen, damit GitHub Pages ihn statisch
+      # ausliefern kann. Deaktivieren, falls stattdessen nur das Artefakt genutzt wird.
+      - name: Commit export to repo
+        run: |
+          git config user.name "keeper-bot"
+          git config user.email "keeper-bot@users.noreply.github.com"
+          git add -f export/
+          if git diff --cached --quiet; then
+            echo "Keine Änderungen am Export."
+          else
+            git commit -m "chore: täglicher Export-Update [skip ci]"
+            git push
+          fi

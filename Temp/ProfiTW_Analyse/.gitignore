@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+
+# Secrets & lokale Konfiguration
+.env
+
+# Lokale Datenbank & Rohdaten
+*.db
+*.sqlite
+*.sqlite3
+# Große Kaggle-Downloads ignorieren, aber die mitgelieferten Demo-CSVs behalten.
+data/kaggle/*.csv
+!data/kaggle/players.csv
+!data/kaggle/clubs.csv
+!data/kaggle/transfers.csv
+!data/kaggle/appearances.csv
+!data/kaggle/competitions.csv
+
+# Erzeugter Export (wird im CI committet/als Artefakt gebaut)
+export/
+
+# Kaggle-Cache
+.kaggle/
