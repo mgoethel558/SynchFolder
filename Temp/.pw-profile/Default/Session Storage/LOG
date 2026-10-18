@@ -1,0 +1,7 @@
+2026/10/05-17:39:42.891 b01c Reusing MANIFEST C:\Users\mgoethel\OneDrive - Deloitte (O365D)\Documents\Projekt\SynchFolder\Temp\.pw-profile\Default\Session Storage/MANIFEST-000001
+2026/10/05-17:39:42.976 b01c Recovering log #7
+2026/10/05-17:39:42.979 b01c Level-0 table #9: started
+2026/10/05-17:39:43.156 b01c Level-0 table #9: 41132 bytes OK
+2026/10/05-17:39:43.166 b01c Recovering log #9
+2026/10/05-17:39:43.182 b01c Reusing old log C:\Users\mgoethel\OneDrive - Deloitte (O365D)\Documents\Projekt\SynchFolder\Temp\.pw-profile\Default\Session Storage/000009.log 
+2026/10/05-17:39:43.187 b01c Delete type=0 #7

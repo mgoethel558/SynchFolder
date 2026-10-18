@@ -1,0 +1,18 @@
+{
+  "club_id": "23826",
+  "club_name": "SC Freiburg II",
+  "goalkeeper_count": 1,
+  "keepers": [
+    {
+      "player_id": "3",
+      "name": "Gregor Kobel",
+      "from_date": null,
+      "to_date": null,
+      "tenure_years": null,
+      "origin": "unknown"
+    }
+  ],
+  "origin_breakdown": {
+    "unknown": 1
+  }
+}

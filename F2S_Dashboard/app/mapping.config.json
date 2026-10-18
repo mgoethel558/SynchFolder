@@ -1,0 +1,98 @@
+{
+  "_comment": "Zentrale Mapping-Konfiguration fuer das F2S Outcome Dashboard. Aenderungen hier wirken ohne Code-Anpassung. Spaltenbuchstaben beziehen sich auf das Sheet 'Outcome Log', Zellen auf 'Workshop Summary'.",
+
+  "file_prefix": "F2S",
+  "exclude_filename_contains": ["TEMPLATE", "VORLAGE", "(WS-ID)"],
+
+  "sheets": {
+    "summary": "Workshop Summary",
+    "log": "Outcome Log"
+  },
+
+  "summary_cells": {
+    "workshop_id": "C6",
+    "workshop_title": "C7",
+    "workstream": "C8",
+    "area": "C9",
+    "scope_items": "C10",
+    "date": "C11",
+    "overall_result": "C17",
+    "approval_status": "C24"
+  },
+
+  "log_header_row": 4,
+  "log_first_data_row": 5,
+  "log_columns": {
+    "outcome_id": "A",
+    "record_type": "B",
+    "process_step": "C",
+    "topic": "D",
+    "business_requirement": "G",
+    "fit_assessment": "H",
+    "criticality": "L",
+    "proposed_solution": "N",
+    "decision": "O",
+    "decision_status": "P",
+    "decision_owner": "Q",
+    "action": "R",
+    "action_owner": "S",
+    "due_date": "T",
+    "action_status": "U",
+    "requirement_url": "W"
+  },
+
+  "count_rules": {
+    "decision_if_field": "decision",
+    "task_if_field": "action"
+  },
+
+  "record_types": {
+    "requirement": "Requirement",
+    "issue": "Issue",
+    "assumption": "Assumption",
+    "information": "Information"
+  },
+
+  "status_maps": {
+    "action_status": {
+      "Open": "offen",
+      "In Progress": "in Arbeit",
+      "Blocked": "in Arbeit",
+      "Closed": "erledigt",
+      "Not Required": "nicht relevant"
+    },
+    "decision_status": {
+      "Decision Pending": "offen",
+      "Approved": "erledigt",
+      "Rejected": "erledigt",
+      "Not Required": "nicht relevant"
+    },
+    "fit_assessment": {
+      "Open / To Be Assessed": "offen",
+      "Fit": "erledigt",
+      "Fit with Configuration": "erledigt",
+      "Fit with Process Change": "erledigt",
+      "Gap / Extension Required": "erledigt",
+      "Out of Scope": "erledigt"
+    }
+  },
+
+  "fit_assessment_values": [
+    "Fit",
+    "Fit with Configuration",
+    "Fit with Process Change",
+    "Gap / Extension Required",
+    "Open / To Be Assessed",
+    "Out of Scope"
+  ],
+
+  "overall_result_values": [
+    "Completed - Fit",
+    "Completed - Gaps Identified",
+    "Follow-up Required",
+    "Decision Pending"
+  ],
+
+  "unknown_value": "unbekannt",
+  "empty_placeholders": ["[Enter name(s)]", "[List of attendees]", "[List of absentees]", "[Paste requirement URL]", "[Paste workshop deck URL]", "n/a", "N/A", "-"]
+}

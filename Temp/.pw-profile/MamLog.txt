@@ -1,0 +1,12 @@
+[2026-10-05T12:55:48.277Z] [INFO] ========================================================================================================================
+[2026-10-05T12:55:48.277Z] [INFO] Initializing MAM Client.
+App: com.microsoft.edge 154.0.4258.48
+SDK: 2.1.367.0
+OS: windows 10.0.26100.9448
+DeviceType: Desktop
+Manufacturer: HP
+Model: HP EliteBook 865 16 inch G11 Notebook PC
+Telemetry: yes
+Managed device support: enabled
+[2026-10-05T12:55:48.277Z] [INFO] Telemetry session b226dcf8-90ef-44cb-9e71-bb7d7210da2a.
+[2026-10-05T12:55:48.277Z] [INFO] Initializing cache (v1).

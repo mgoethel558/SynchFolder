@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fit-to-Standard Outcome Dashboard</title>
+<link rel="stylesheet" href="/assets/style.css">
+</head>
+<body class="lang-de">
+
+<header class="top">
+  <div class="bar"><i id="progress"></i></div>
+  <div class="nav">
+    <div class="brand"><b>LOH</b> <span data-i18n="app_title">Fit-to-Standard Outcome Dashboard</span>
+      <small data-i18n="app_subtitle">Workshop-Ergebnisse fuer Status-Meetings</small>
+    </div>
+    <div class="spacer"></div>
+    <div class="updated">
+      <span data-i18n="last_update">Letzte Aktualisierung</span><br>
+      <b id="lastUpdate" data-i18n="never">noch nie</b>
+    </div>
+    <button class="btn primary" id="btnRefresh" data-i18n="btn_refresh">Aktualisieren</button>
+    <button class="btn" id="btnPdf" data-i18n="btn_pdf">PDF-Export</button>
+    <div class="langgroup">
+      <button class="lang active" data-lang="de">DE</button>
+      <button class="lang" data-lang="en">EN</button>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="print-header">
+    <h1 data-i18n="app_title">Fit-to-Standard Outcome Dashboard</h1>
+    <div class="meta"><span data-i18n="last_update">Letzte Aktualisierung</span>: <span id="printDate"></span></div>
+  </div>
+
+  <!-- Leerer Zustand -->
+  <section id="emptyState" class="empty">
+    <div class="big">📊</div>
+    <h2 data-i18n="empty_title">Noch keine Daten</h2>
+    <p data-i18n="empty_hint">Bitte auf „Aktualisieren“ klicken, um die Workshop-Ergebnisse zu laden.</p>
+  </section>
+
+  <!-- Warnungen -->
+  <div id="warnBox" class="warnbox hidden">
+    <h3 data-i18n="warnings_title">Hinweise aus der letzten Auswertung</h3>
+    <ul id="warnList"></ul>
+  </div>
+
+  <!-- Grafik-Sektion -->
+  <section id="chartSection" class="hidden">
+    <h2 data-i18n="section_charts">Grafiken</h2>
+    <div class="charts">
+      <div class="chartcard">
+        <h3 data-i18n="chart_a_title">A – Verlauf (Burn-up)</h3>
+        <p class="desc" data-i18n="chart_a_desc"></p>
+        <div class="chart-toolbar">
+          <label data-i18n="type_filter">Typ</label>
+          <select id="burnupType"></select>
+        </div>
+        <div class="chartbox"><canvas id="chartA"></canvas></div>
+      </div>
+      <div class="chartcard">
+        <h3 data-i18n="chart_b_title">B – Status pro LoB</h3>
+        <p class="desc" data-i18n="chart_b_desc"></p>
+        <div class="chart-toolbar">
+          <label data-i18n="type_filter">Typ</label>
+          <select id="statusType"></select>
+        </div>
+        <div class="chartbox"><canvas id="chartB"></canvas></div>
+      </div>
+      <div class="chartcard">
+        <h3 data-i18n="chart_c_title">C – Workshops pro LoB</h3>
+        <p class="desc" data-i18n="chart_c_desc"></p>
+        <div class="chartbox"><canvas id="chartC"></canvas></div>
+      </div>
+      <div class="chartcard">
+        <h3 data-i18n="chart_d_title">D – Fit-Assessment pro LoB</h3>
+        <p class="desc" data-i18n="chart_d_desc"></p>
+        <div class="chartbox"><canvas id="chartD"></canvas></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- KPIs -->
+  <section id="kpiSection" class="hidden">
+    <h2 data-i18n="section_kpis">KPIs</h2>
+    <div class="kpis" id="kpis"></div>
+  </section>
+
+  <!-- Tabelle -->
+  <section id="tableSection" class="hidden">
+    <h2 data-i18n="table_title">Übersicht pro Workstream / LoB</h2>
+    <p class="sub" data-i18n="expand_hint">Zum Auf-/Zuklappen der Areas klicken</p>
+    <div style="overflow-x:auto">
+      <table id="lobTable">
+        <thead id="lobHead"></thead>
+        <tbody id="lobBody"></tbody>
+        <tfoot id="lobFoot"></tfoot>
+      </table>
+    </div>
+  </section>
+
+  <div class="footer" data-i18n="footer_note">Läuft vollständig lokal · SharePoint-Zugriff nur lesend</div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="/assets/chart.min.js"></script>
+<script src="/assets/i18n.js"></script>
+<script src="/assets/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+{
+  "name": "praesentation-werkzeuge",
+  "private": true,
+  "description": "Playwright für pruefen.js und pdf_bauen.js (Skill praesentation)",
+  "dependencies": {
+    "playwright": "1.61.1"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "name": "Neutral",
+  "beschreibung": "Markenneutrales Ausgangs-Theme mit Systemschriften; Vorlage für eigene Themes",
+  "schriften": [],
+  "lockup": "<span class=\"lockup\"><span class=\"wm\"><b>{{MARKE}}</b></span></span>",
+  "favicon": "",
+  "titel_praefix": ""
+}

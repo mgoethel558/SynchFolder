@@ -1,0 +1,32 @@
+{
+  "league": "L1",
+  "goalkeeper_count": 4,
+  "debut_age_distribution": {
+    "histogram": {
+      "24": 1,
+      "27": 1,
+      "32": 1
+    },
+    "median_debut_age": 27.0,
+    "count": 3
+  },
+  "minutes_progression_by_age": {
+    "24": 90.0,
+    "25": 90.0,
+    "27": 90.0,
+    "32": 180.0,
+    "33": 90.0
+  },
+  "club_mobility": {
+    "avg_transfers": 1.0,
+    "avg_distinct_clubs": 2.0
+  },
+  "career_length": {
+    "avg_years": null,
+    "count": 0
+  },
+  "typical_path": {
+    "share_with_youth_club": 0.0,
+    "share_with_loan": 0.0
+  }
+}

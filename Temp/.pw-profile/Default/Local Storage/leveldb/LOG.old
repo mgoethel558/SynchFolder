@@ -1,0 +1,13 @@
+2026/10/05-15:12:28.384 7cf8 Reusing MANIFEST C:\Users\mgoethel\OneDrive - Deloitte (O365D)\Documents\Projekt\SynchFolder\Temp\.pw-profile\Default\Local Storage\leveldb/MANIFEST-000001
+2026/10/05-15:12:28.423 7cf8 Recovering log #6
+2026/10/05-15:12:28.424 7cf8 Level-0 table #9: started
+2026/10/05-15:12:28.441 7cf8 Level-0 table #9: 77585 bytes OK
+2026/10/05-15:12:28.450 7cf8 Delete type=0 #6
+2026/10/05-15:12:28.452 839c Compacting 4@0 + 0@1 files
+2026/10/05-15:12:28.538 839c Generated table #11@0: 53 keys, 85826 bytes
+2026/10/05-15:12:28.538 839c Compacted 4@0 + 0@1 files => 85826 bytes
+2026/10/05-15:12:28.540 839c compacted to: files[ 0 1 0 0 0 0 0 ]
+2026/10/05-15:12:28.541 839c Delete type=2 #3
+2026/10/05-15:12:28.541 839c Delete type=2 #4
+2026/10/05-15:12:28.542 839c Delete type=2 #7
+2026/10/05-15:12:28.542 839c Delete type=2 #9

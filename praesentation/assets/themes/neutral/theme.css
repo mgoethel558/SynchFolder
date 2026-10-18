@@ -1,0 +1,42 @@
+/* Neutral — Ausgangspunkt für eigene Marken. Systemschriften, ruhiges Blau, warmes Papier.
+ * Für eine neue Marke diesen Ordner kopieren und nur die Werte unten ersetzen
+ * (references/eigenes-template.md). Alle Paare sind auf WCAG AA geprüft — nach dem
+ * Austausch neu prüfen. */
+:root{
+  --d-bg:#F8F7F4; --d-surface:#FFFFFF; --d-surface-sunk:#EFEDE8;
+  --d-ink:#16191D; --d-ink-2:#3F4650; --d-ink-3:#5C6470; --d-ink-4:#7F8792;
+  --d-line:#DDDAD3; --d-line-strong:#BFBBB2;
+  --d-accent:#1F4E8C; --d-accent-strong:#132F57; --d-accent-mid:#4A74AD;
+  --d-accent-soft:#8FAAD0; --d-accent-pale:#CFDCEE;
+  --d-mark:#8A5A12;
+  --d-ai:#5B4E8C; --d-ai-bg:#EFEDF8; --d-ai-line:#D9D3EE; --d-ai-text:#3B3260;
+  --d-font-display:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+  --d-font-text:system-ui,-apple-system,"Segoe UI","Helvetica Neue",Arial,sans-serif;
+  --d-font-data:ui-monospace,"Cascadia Mono","SF Mono",Consolas,monospace;
+  --d-wm-weight:400;
+  --d-radius-action:6px; --d-radius-surface:4px;
+  --d-shadow:0 8px 24px rgba(22,25,29,.12); --d-dur:120ms;
+
+  --d-brand-bg:#1F4E8C; --d-on-brand:#F8F7F4; --d-on-brand-2:#CFDCEE;
+  --d-on-brand-mark:#CFDCEE; --d-on-brand-logo:#F8F7F4;
+  --d-on-brand-line:#4A74AD; --d-on-brand-hover:#132F57; --d-on-brand-hint:#CFDCEE;
+  --d-on-brand-track:#132F57; --d-on-brand-fill:#F8F7F4;
+
+  --d-player-bg:#15191F; --d-player-line:#3A424D; --d-player-line-2:#262C34;
+  --d-player-ink:#F1F2F4; --d-player-meta:#8FAAD0; --d-player-video:#0C0F13;
+  --d-player-btn:#1F4E8C; --d-player-btn-hover:#132F57; --d-player-btn-ink:#F8F7F4;
+}
+:root[data-theme="dark"]{
+  --d-bg:#0F1216; --d-surface:#171B21; --d-surface-sunk:#0B0E11;
+  --d-ink:#F1F2F4; --d-ink-2:#C2C8D0; --d-ink-3:#98A0AB; --d-ink-4:#5F6772;
+  --d-line:#262C34; --d-line-strong:#3A424D;
+  --d-accent:#8FAAD0; --d-accent-strong:#CFDCEE; --d-accent-mid:#6688B8;
+  --d-accent-soft:#3D5E8C; --d-accent-pale:#22344E;
+  --d-mark:#D9A75A;
+  --d-ai:#B9AEE4; --d-ai-bg:#221E36; --d-ai-line:#3A3357; --d-ai-text:#D8D2F0;
+
+  --d-brand-bg:#171B21; --d-on-brand:#F1F2F4; --d-on-brand-2:#C2C8D0;
+  --d-on-brand-mark:#D9A75A; --d-on-brand-logo:#8FAAD0;
+  --d-on-brand-line:#3A424D; --d-on-brand-hover:#0B0E11; --d-on-brand-hint:#98A0AB;
+  --d-on-brand-track:#262C34; --d-on-brand-fill:#8FAAD0;
+}

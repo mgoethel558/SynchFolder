@@ -1,0 +1,86 @@
+================================================================
+ Fit-to-Standard Outcome Dashboard  -  Kurzanleitung
+================================================================
+
+WAS IST DAS?
+------------
+Ein lokales Dashboard, das die Fit-to-Standard-Workshop-Ergebnisse
+(F2S_Workshop_Outcome_*.xlsx) aus SharePoint laedt, auswertet und fuer
+Status-Meetings aufbereitet. Es laeuft vollstaendig auf diesem Rechner.
+Auf SharePoint wird ausschliesslich LESEND zugegriffen.
+
+Es gibt zwei Dateien:
+  * Dashboard.html     -> zum ANSEHEN (Doppelklick, oeffnet im Browser)
+  * Aktualisieren.bat  -> zum DATEN HOLEN aus SharePoint (Doppelklick)
+
+
+VORAUSSETZUNGEN
+---------------
+- Windows 10 oder 11 (64-Bit)
+- Internet nur beim allerersten "Aktualisieren" (einmaliger Browser-Download,
+  ca. 170 MB) und danach jeweils fuer das Laden der Excel-Dateien
+- Ein eigenes Konto mit Zugriff auf die SharePoint-Seite
+
+
+EINRICHTEN (einmalig)
+---------------------
+1. Diesen Ordner komplett entpacken (z. B. nach C:\F2S-Dashboard).
+2. Im Unterordner "app" die Datei  config.local.json.example  nach
+   config.local.json  kopieren und darin die SharePoint-Ordner-URL eintragen
+   (der Ordner, in dem die F2S_Workshop_Outcome_*.xlsx liegen).
+
+
+SO WIRD ES BENUTZT
+------------------
+DATEN HOLEN / AKTUALISIEREN:
+  Doppelklick auf  Aktualisieren.bat
+  - Beim allerersten Mal wird einmalig ein Browser geladen (ca. 170 MB).
+  - Danach oeffnet sich ein Browserfenster zur SharePoint-Anmeldung
+    (beim ersten Mal inkl. MFA; die Anmeldung wird gemerkt).
+  - Die Dateien werden gelesen, ausgewertet und das Dashboard oeffnet sich
+    automatisch mit den aktuellen Zahlen.
+
+NUR ANSEHEN (ohne neue Daten zu holen):
+  Doppelklick auf  Dashboard.html
+  - Zeigt den zuletzt geladenen Stand. Funktioniert auch offline und ohne
+    SharePoint, solange schon einmal aktualisiert wurde.
+
+IM DASHBOARD:
+  - PDF-EXPORT: oeffnet den Druckdialog (A4 quer) -> "Als PDF speichern".
+  - DE / EN (oben rechts): schaltet die Sprache um; Auswahl wird gemerkt.
+  - Tabelle: Spaltenkopf klicken zum Sortieren; LoB-Zeile klicken, um die
+    Areas auf-/zuzuklappen.
+  - Der Knopf "Aktualisieren" im Dashboard weist nur darauf hin, dass das
+    Holen neuer Daten ueber Aktualisieren.bat laeuft (der Browser selbst darf
+    aus Sicherheitsgruenden nichts herunterladen).
+
+
+ABLAGEORTE
+----------
+- data\snapshots.json : die Verlaufshistorie (append-only, waechst pro Lauf).
+- data\snapshots.js   : dieselbe Historie fuer die HTML-Anzeige (automatisch).
+- temp\               : temporaere Downloads, nach jedem Lauf automatisch leer.
+- app\mapping.config.json : Spalten-/Status-Zuordnung (anpassbar, siehe README).
+- %LOCALAPPDATA%\F2S-Dashboard\ : Browser + SharePoint-Login (nicht im
+  Paketordner, damit OneDrive-Sync nicht stoert).
+
+
+WEITERGABE AN KOLLEGEN
+----------------------
+Diesen gesamten Ordner weitergeben (z. B. als ZIP). Die Kollegin / der Kollege
+richtet nur config.local.json ein und nutzt Aktualisieren.bat.
+- Es werden KEINE Passwoerter mitgegeben; jede Person meldet sich mit dem
+  EIGENEN Konto an und sieht nur, worauf sie Zugriff hat.
+- Soll die bisherige Historie NICHT mitgegeben werden, vor dem Weitergeben
+  die Dateien  data\snapshots.json  und  data\snapshots.js  loeschen.
+- Soll die Historie geteilt werden, beide Dateien mitgeben.
+
+
+SICHERHEIT
+----------
+- Nur lesender SharePoint-Zugriff (REST-GET). Es wird dort nichts geschrieben,
+  verschoben oder geloescht.
+- Keine Cloud-Dienste, keine externen Server, keine Telemetrie. Alle
+  Programmbibliotheken liegen lokal im Paket.
+
+================================================================

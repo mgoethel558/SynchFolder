@@ -1,0 +1,303 @@
+/* ============================================================
+ * Präsentations-Engine — markenneutral
+ * Alle Farben, Schriften und Radien kommen aus den --d-*-Token des Themes.
+ * Drei Modi über Klassen an <html>:
+ *   deck      ab 900 × 560 px mit JavaScript: eine Folie pro Bildschirm
+ *   (keine)   Lesemodus — Handy, Mail-Vorschau, ohne JS: Folien untereinander
+ *   deck pdf  gesetzt von pdf_bauen.js: jede Folie eine Seite 1920 × 1080
+ * Grundregeln: Folieninhalt nie unter 24 px, keine Folienübergänge,
+ * keine eingeflogenen Aufzählungen, keine Kursive.
+ * ============================================================ */
+
+/* Deck-Maße (Größen, keine Farben — ein Theme darf sie überschreiben) */
+:root{
+  --fs-h:clamp(40px,4.4vw,66px);
+  --fs-lead:clamp(28px,2.5vw,38px);
+  --fs-body:clamp(26px,2.1vw,32px);
+  --fs-small:24px;
+  --fs-eyebrow:24px;
+  --pad-x:clamp(32px,5vw,96px);
+  --pad-y:clamp(20px,4vh,56px);
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{font-family:var(--d-font-text);-webkit-font-smoothing:antialiased}
+body{background:var(--d-bg);color:var(--d-ink);
+  font-size:var(--fs-body);line-height:1.45}
+html.deck body{overflow:hidden}
+i,em,cite,dfn,var,address{font-style:normal}
+:focus-visible{outline:2px solid var(--d-accent);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{transition:none!important;animation:none!important;scroll-behavior:auto!important}
+}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+
+/* ---------- Folien ---------- */
+.slide{display:flex;position:relative;
+  padding:clamp(40px,7vw,72px) var(--pad-x);
+  flex-direction:column;justify-content:center;justify-content:safe center;
+  gap:clamp(16px,3vh,36px);
+  background:var(--d-bg);color:var(--d-ink)}
+html.deck main{position:fixed;inset:0}
+html.deck .slide{display:none;position:absolute;inset:0;overflow:hidden;
+  padding:calc(var(--pad-y) + 56px) var(--pad-x) calc(var(--pad-y) + 28px)}
+html.deck .slide.active{display:flex}
+
+.eyebrow{font-family:var(--d-font-data);font-weight:500;font-size:var(--fs-eyebrow);
+  letter-spacing:.16em;text-transform:uppercase;color:var(--d-mark)}
+h1,h2{font-family:var(--d-font-display);font-weight:700;letter-spacing:-.02em;
+  font-size:var(--fs-h);line-height:1.08;max-width:28ch}
+.lead{font-size:var(--fs-lead);line-height:1.35;color:var(--d-ink-2);max-width:38ch}
+
+ul.points{list-style:none;display:flex;flex-direction:column;gap:clamp(12px,2.2vh,24px);max-width:62ch}
+ul.points li{position:relative;padding-left:40px;font-size:var(--fs-body);line-height:1.4;color:var(--d-ink)}
+ul.points li::before{content:"";position:absolute;left:0;top:.62em;width:22px;height:2px;
+  background:var(--d-accent)}
+
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,3vw,48px);align-items:start}
+.cols-wide-right{grid-template-columns:5fr 6fr}
+.cols-wide-left{grid-template-columns:6fr 5fr}
+.stack{display:flex;flex-direction:column;gap:clamp(12px,2vh,20px)}
+
+/* ---------- Karten ---------- */
+.card{background:var(--d-surface);border:1px solid var(--d-line);
+  border-radius:var(--d-radius-surface);padding:clamp(16px,2.4vh,28px) clamp(18px,2vw,32px)}
+.card .eyebrow{display:flex;align-items:center;gap:12px;font-size:var(--fs-eyebrow)}
+.card ul.points{margin-top:16px}
+.card-title{color:var(--d-accent)}
+
+/* Messwert-Karte: gefüllter Punkt, Wert in der Akzentfarbe */
+.card-measured .eyebrow{color:var(--d-accent)}
+.card-measured .eyebrow::before{content:"";width:13px;height:13px;border-radius:50%;
+  background:var(--d-accent);flex:none}
+.value{font-family:var(--d-font-data);font-weight:500;font-variant-numeric:tabular-nums;
+  font-size:clamp(44px,4vw,62px);line-height:1.1;color:var(--d-accent);margin-top:8px}
+.value-sub{font-size:var(--fs-small);color:var(--d-ink-2);margin-top:6px}
+
+/* KI-Karte: Raute als Kontur, eigene Farbfamilie — Deutung, keine Messung */
+.card-ai{background:var(--d-ai-bg);border-color:var(--d-ai-line)}
+.card-ai .eyebrow{color:var(--d-ai)}
+.card-ai .eyebrow::before{content:"";width:12px;height:12px;flex:none;
+  border:2px solid var(--d-ai);transform:rotate(45deg)}
+.card-ai p{color:var(--d-ai-text);font-size:var(--fs-body);line-height:1.4;margin-top:10px;max-width:46ch}
+
+/* Aussage eines Menschen: Text auf Grundfläche, Eyebrow aus Worten, kein Herkunftszeichen */
+.card-human{background:var(--d-bg)}
+.card-human .eyebrow{color:var(--d-ink-2);letter-spacing:.12em}
+.card-human p{margin-top:10px;font-size:var(--fs-body);line-height:1.4}
+.pair{display:grid;grid-template-columns:1fr auto 1fr;gap:14px;align-items:stretch}
+.match-word{align-self:center;justify-self:center;background:var(--d-surface-sunk);
+  color:var(--d-ink-2);font-family:var(--d-font-data);font-weight:500;
+  font-size:var(--fs-small);letter-spacing:.16em;text-transform:uppercase;
+  padding:10px 18px;border-radius:var(--d-radius-surface)}
+
+/* Hinweiskarte (vertieft) */
+.card-sunk{background:var(--d-surface-sunk);border:1px solid var(--d-line);
+  padding:clamp(14px,2vh,22px) clamp(18px,2vw,28px);
+  font-size:var(--fs-small);line-height:1.45;color:var(--d-ink-2);max-width:70ch}
+
+/* ---------- Platzhalter (gestreift, Beschriftung in der Datenschrift) ---------- */
+.placeholder{display:flex;align-items:center;justify-content:center;text-align:center;
+  border:1px solid var(--d-line-strong);min-height:180px;padding:24px;
+  background:repeating-linear-gradient(45deg,var(--d-surface-sunk) 0 14px,var(--d-bg) 14px 28px)}
+.placeholder span{font-family:var(--d-font-data);font-weight:500;font-size:var(--fs-small);
+  letter-spacing:.08em;color:var(--d-ink-2);background:var(--d-bg);
+  padding:10px 16px;border:1px solid var(--d-line-strong)}
+
+/* ---------- Fotos und Abbildungen (Beschriftung außerhalb des Bildes) ---------- */
+.person{display:grid;grid-template-columns:auto 1fr;gap:clamp(16px,2vw,28px);align-items:center}
+.person img{display:block;width:clamp(120px,24vh,250px);height:auto;aspect-ratio:1;object-fit:cover}
+.person-name{font-family:var(--d-font-display);font-weight:600;font-size:var(--fs-lead);line-height:1.15}
+.person-role{font-size:var(--fs-small);line-height:1.35;color:var(--d-ink-2);margin-top:8px}
+.figure img{display:block;width:100%;height:auto;border:1px solid var(--d-line-strong)}
+.figure figcaption,.shot figcaption{font-size:var(--fs-small);line-height:1.35;color:var(--d-ink-2);margin-top:10px}
+
+/* Folie mit hoher Abbildung rechts (Screenshot im Hochformat) */
+html.deck .slide-split{flex-direction:row;align-items:center;gap:clamp(24px,3vw,56px)}
+.split-main{flex:1 1 auto;min-width:0;display:flex;flex-direction:column;gap:clamp(12px,2.4vh,28px)}
+/* Breite folgt dem Bild (Höhe fest); die Unterschrift bricht in dieser Breite um */
+html.deck .shot{flex:none;width:min-content}
+html.deck .shot img{height:calc(100vh - 2 * var(--pad-y) - 192px);width:auto}
+.shot img{display:block;width:100%;height:auto;border:1px solid var(--d-line-strong)}
+
+/* ---------- Videoplayer — dunkle Insel in beiden Modi ---------- */
+.player{background:var(--d-player-bg);border:1px solid var(--d-player-line);display:flex;flex-direction:column;min-width:0}
+.player-head{display:flex;align-items:baseline;gap:16px;justify-content:space-between;
+  padding:12px 18px;border-bottom:1px solid var(--d-player-line-2)}
+.player-head .pt{font-family:var(--d-font-display);font-weight:600;font-size:var(--fs-small);color:var(--d-player-ink)}
+.player-head .pm{font-family:var(--d-font-data);font-weight:500;font-size:var(--fs-small);
+  letter-spacing:.16em;text-transform:uppercase;color:var(--d-player-meta);white-space:nowrap}
+.player-stage{position:relative;line-height:0}
+.player video{display:block;width:100%;height:auto;max-height:var(--video-max,56vh);background:var(--d-player-video)}
+.player .start{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:none}
+.player .start button,.pdf-play span{height:52px;padding:0 28px;border-radius:var(--d-radius-action);
+  background:var(--d-player-btn);color:var(--d-player-btn-ink);font-weight:600;font-size:var(--fs-small);
+  font-family:var(--d-font-text)}
+.player .start button:hover{background:var(--d-player-btn-hover);transition:background var(--d-dur) linear}
+.player.started .start{display:none}
+html:not(.js) .player .start{display:none}
+/* Link zum Video im Browser: im Lesemodus und im PDF sichtbar */
+.video-link{display:none;padding:12px 18px;border-top:1px solid var(--d-player-line-2);line-height:1.35;
+  font-size:var(--fs-small);font-weight:600;color:var(--d-player-ink);text-decoration:underline;
+  text-underline-offset:.18em;overflow-wrap:anywhere}
+html:not(.deck) .video-link{display:block}
+/* Im PDF ersetzt eine Link-Fläche den Startknopf */
+.pdf-play{display:none;position:absolute;inset:0;align-items:center;justify-content:center;text-decoration:none}
+.pdf-play span{display:inline-flex;align-items:center;line-height:1}
+/* Video füllt den Rest der Folie, Breite folgt dem 16:9-Bild */
+html.deck .player-fill{flex:1 1 auto;min-height:140px;align-self:center;max-width:100%;
+  display:flex;flex-direction:column}
+html.deck .player-fill .player-stage{flex:1;min-height:0;display:flex;justify-content:center}
+html.deck .player-fill video{height:100%;width:auto;max-width:100%;max-height:none;aspect-ratio:16/9}
+
+/* ---------- Phasenleiste: nummerierte Marken auf einer Linie ---------- */
+.phases{display:grid;grid-template-columns:repeat(var(--n,5),1fr);gap:clamp(10px,1.4vw,24px);position:relative}
+.phases::before{content:"";position:absolute;left:0;right:0;top:9px;height:2px;background:var(--d-accent-soft)}
+.phase{position:relative;padding-top:34px}
+.phase::before{content:"";position:absolute;top:0;left:0;width:20px;height:20px;border-radius:50%;
+  background:var(--d-accent);border:3px solid var(--d-bg)}
+
+/* ---------- Schrittreihe ---------- */
+.steps{display:grid;grid-template-columns:repeat(var(--n,4),1fr);gap:clamp(12px,1.6vw,28px)}
+.phase .num,.step .num{font-family:var(--d-font-data);font-weight:500;font-size:var(--fs-eyebrow);
+  letter-spacing:.16em;color:var(--d-mark)}
+.phase .nam,.step .nam{font-family:var(--d-font-display);font-weight:600;
+  font-size:clamp(26px,1.9vw,32px);line-height:1.15;margin:6px 0 8px}
+.phase .des,.step .des{font-size:var(--fs-small);line-height:1.35;color:var(--d-ink-2)}
+
+/* ---------- Diagramme (Inline-SVG, Farben über var(--d-*)) ---------- */
+.diagram{width:100%;height:auto}
+.diagram text{font-family:var(--d-font-text)}
+.diagram .dt{font-family:var(--d-font-display);font-weight:600}
+.diagram .dm{font-family:var(--d-font-data);font-weight:500;letter-spacing:.12em}
+.diagram-small{max-height:30vh}
+
+/* ---------- Titel- und Schlussfolie (zweite Deckfarbe) ---------- */
+.slide--brand{background:var(--d-brand-bg);color:var(--d-on-brand)}
+.slide--brand .eyebrow{color:var(--d-on-brand-mark)}
+.slide--brand h1{max-width:18ch}
+.slide--brand .lead{color:inherit}
+.slide--brand .step .num{color:var(--d-on-brand-mark)}
+.slide--brand .step .des{color:var(--d-on-brand-2)}
+
+.lockup{display:inline-flex;align-items:center;gap:.55em;color:currentColor}
+.lockup svg,.lockup img{width:1.32em;height:1.32em;display:block;flex:none;object-fit:contain}
+.lockup .wm{font-family:var(--d-font-display);font-weight:var(--d-wm-weight,500);letter-spacing:-.025em;
+  line-height:1;white-space:nowrap}
+.lockup .wm b{font-weight:700}
+.hero{font-size:clamp(56px,6vw,88px)}
+/* Co-Branding: Partner zuerst, Trennstrich in Textfarbe mit 45 % Deckkraft, dann die eigene Marke.
+ * Partnerlogo unverändert, höchstens 1,3 × Signethöhe (Signet = 1,32 em). */
+.cobrand{display:flex;align-items:center;gap:.45em;font-size:clamp(56px,6vw,88px)}
+.cobrand .crest{display:block;height:calc(1.3 * 1.32em);width:auto}
+.cobrand-sep{flex:none;width:2px;height:1em;background:currentColor;opacity:.45}
+.cobrand .lockup{font-size:1em}
+.claim{font-size:clamp(24px,1.8vw,28px);line-height:1.3;color:var(--d-ink-2)}
+.claim a{color:inherit;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.18em}
+.slide--brand .claim{color:var(--d-on-brand-2)}
+
+/* ---------- Bedienleiste — Werkzeug der vortragenden Person, kein Folieninhalt ---------- */
+.chrome{position:sticky;top:0;z-index:40;display:flex;align-items:center;
+  gap:12px;padding:10px var(--pad-x);color:var(--d-ink-2);font-size:16px;
+  background:var(--d-bg);border-bottom:1px solid var(--d-line)}
+html.deck .chrome{position:fixed;left:0;right:0;background:none;border-bottom:0}
+.chrome .lockup{font-size:19px;color:var(--d-accent)}
+.chrome .sp{flex:1}
+.chrome .counter{font-family:var(--d-font-data);font-weight:500;font-size:17px;
+  letter-spacing:.08em;font-variant-numeric:tabular-nums}
+.cbtn{display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 14px;
+  border:1px solid var(--d-line-strong);border-radius:var(--d-radius-action);
+  color:var(--d-ink-2);background:none;font-size:16px;font-weight:600;
+  transition:background var(--d-dur) linear}
+.cbtn:hover{background:var(--d-surface-sunk)}
+.cbtn kbd{font-family:var(--d-font-data);font-size:13px;font-weight:500;
+  border:1px solid var(--d-line-strong);border-radius:3px;padding:1px 5px;color:var(--d-ink-3)}
+body.on-brand .chrome{color:var(--d-on-brand-2)}
+body.on-brand .chrome .lockup{color:var(--d-on-brand-logo)}
+body.on-brand .cbtn{color:var(--d-on-brand-2);border-color:var(--d-on-brand-line)}
+body.on-brand .cbtn:hover{background:var(--d-on-brand-hover)}
+body.on-brand .cbtn kbd{color:var(--d-on-brand-2);border-color:var(--d-on-brand-line)}
+
+.nav{position:fixed;right:var(--pad-x);bottom:22px;z-index:40;display:flex;gap:10px}
+.nav .cbtn{width:48px;height:48px;padding:0;justify-content:center}
+.nav svg{width:20px;height:20px}
+
+.progress{position:fixed;left:0;right:0;bottom:0;height:5px;background:var(--d-line);z-index:40}
+.progress i{display:block;height:100%;width:0;background:var(--d-accent)}
+body.on-brand .progress{background:var(--d-on-brand-track)}
+body.on-brand .progress i{background:var(--d-on-brand-fill)}
+
+.hint{position:fixed;left:var(--pad-x);bottom:16px;z-index:40;
+  font-family:var(--d-font-data);font-size:14px;letter-spacing:.06em;color:var(--d-ink-3)}
+body.on-brand .hint{color:var(--d-on-brand-hint)}
+
+/* ---------- Sprechernotizen (Taste N) ---------- */
+.slide .notes{display:none}
+.notes-panel{position:fixed;left:0;right:0;bottom:0;z-index:60;display:none;
+  background:var(--d-surface);border-top:1px solid var(--d-line-strong);
+  box-shadow:var(--d-shadow);padding:20px var(--pad-x) 26px;max-height:38vh;overflow:auto}
+.notes-panel .eyebrow{font-size:16px;margin-bottom:8px}
+.notes-panel .ntext{font-size:22px;line-height:1.5;color:var(--d-ink);max-width:90ch}
+body.show-notes .notes-panel{display:block}
+
+/* ---------- Kleine Höhen (Laptop 768 px) ---------- */
+@media (max-height:820px){
+  :root{--fs-h:clamp(32px,3.4vw,46px);--fs-lead:clamp(25px,2.2vw,30px);--fs-body:clamp(24px,2vw,28px)}
+  .slide{gap:clamp(10px,2vh,20px)}
+  .phase .des,.step .des{line-height:1.3}
+  .card{padding:12px 18px}
+  .value{font-size:clamp(34px,3vw,44px)}
+  .card-human p{font-size:var(--fs-small)}
+  ul.points{gap:10px}
+  ul.points li{line-height:1.3}
+  .card ul.points li{font-size:var(--fs-small)}
+  .card-sunk{padding:12px 18px}
+  .diagram-small{max-height:24vh}
+}
+
+/* ---------- Lesemodus (ohne Klasse „deck“): Folien untereinander ---------- */
+html:not(.deck){
+  --fs-h:clamp(28px,4.2vw,56px);--fs-lead:clamp(19px,2.2vw,30px);--fs-body:clamp(17px,1.8vw,26px);
+  --fs-small:clamp(16px,1.5vw,22px);--fs-eyebrow:clamp(13px,1.3vw,20px);--pad-x:clamp(16px,5vw,96px)}
+html:not(.deck) .nav,html:not(.deck) .progress,html:not(.deck) .hint,
+html:not(.deck) .counter,html:not(.deck) #fsBtn,html:not(.deck) #notesBtn,html:not(.deck) .cbtn kbd{display:none}
+html:not(.js) .chrome .cbtn{display:none}
+html:not(.deck) .slide{gap:clamp(14px,2.5vw,28px)}
+html:not(.deck) .cobrand,html:not(.deck) .hero{font-size:clamp(28px,7vw,88px)}
+html:not(.deck) .claim{font-size:clamp(17px,1.8vw,28px)}
+html:not(.deck) .value{font-size:clamp(32px,4vw,56px)}
+html:not(.deck) .phase .nam,html:not(.deck) .step .nam{font-size:clamp(20px,2vw,30px)}
+html:not(.deck) ul.points{gap:12px}
+html:not(.deck) ul.points li{padding-left:30px}
+html:not(.deck) ul.points li::before{width:16px}
+html:not(.deck) .person img{width:clamp(88px,22vw,200px)}
+html:not(.deck) .phases{grid-template-columns:repeat(auto-fit,minmax(170px,1fr));row-gap:24px}
+html:not(.deck) .phases::before{display:none}
+html:not(.deck) .steps{grid-template-columns:repeat(auto-fit,minmax(200px,1fr));row-gap:20px}
+html:not(.deck) .slide-split{flex-direction:column;align-items:stretch}
+html:not(.deck) .shot{max-width:560px}
+html:not(.deck) .player video{max-height:none}
+html:not(.deck) .diagram-small{max-height:none}
+.swipe-hint{display:none;font-size:var(--fs-small);color:var(--d-ink-2)}
+@media (max-width:760px){
+  html:not(.deck) .swipe-hint{display:block}
+  html:not(.deck) .cols{grid-template-columns:1fr !important}
+  html:not(.deck) .pair{grid-template-columns:1fr !important}
+  /* breite Diagramme: lesbare Größe behalten, seitlich wischen */
+  html:not(.deck) .diagram-wrap{overflow-x:auto;margin:0 calc(-1 * var(--pad-x));padding:0 var(--pad-x)}
+  html:not(.deck) .diagram-wrap .diagram{min-width:720px}
+}
+
+/* ---------- PDF (Klassen „deck pdf“): jede Folie eine Seite 1920 × 1080 ---------- */
+@page{size:1920px 1080px;margin:0}
+html.pdf{--pad-y:43px;--pad-x:96px}
+html.pdf body{overflow:visible}
+html.pdf main{position:static}
+html.pdf .slide{display:flex;position:relative;inset:auto;width:1920px;height:1080px;break-after:page}
+html.pdf .slide:last-of-type{break-after:auto}
+html.pdf .chrome,html.pdf .nav,html.pdf .progress,html.pdf .hint,html.pdf .swipe-hint,
+html.pdf .player .start,html.pdf .notes-panel{display:none}
+html.pdf .pdf-play{display:flex}
+html.pdf .video-link{display:block}
+html.pdf .shot img{height:calc(1080px - 2 * 43px - 192px)}
+html.pdf .diagram-small{max-height:324px}

@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Deloitte · Kennenlernen</title>
+<meta name="description" content="">
+<script>
+/* Modus vor dem ersten Zeichnen festlegen: Präsentation ab 900 × 560 px, sonst Lesemodus */
+(function(r){ r.classList.add("js");
+  try { if (window.matchMedia("(min-width: 900px) and (min-height: 560px)").matches) { r.classList.add("deck"); } } catch (e) {}
+})(document.documentElement);
+</script>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%23000'/%3E%3Ccircle cx='12' cy='11' r='2.4' fill='%2386BC25'/%3E%3C/svg%3E">
+<style>
+/* ==== Präsentation · erzeugt mit dem Skill „praesentation“ · Theme: Deloitte ====
+ * Eine Datei, offline lauffähig. Bilder und Videos: ./media daneben.
+ * Reihenfolge: Schriften → Theme-Token → Engine → folienspezifische Ergänzungen (ganz unten). */
+
+/* ---- Schriften (base64, kein Netzzugriff) ---- */
+/* Systemschriften — nichts einzubetten */
+
+/* ---- Theme ---- */
+/* Deloitte — Theme nach dem Look des deloitte-pdf-Generators.
+ * Signatur: schwarze Titel-/Schlussfolie mit weißem „Deloitte."-Schriftzug und grünem
+ * Punkt, Deloitte-Grün (#86BC25) als Signalfarbe, dunkelgrün (#046A38) für Akzenttext.
+ * Systemschriften (Segoe UI / Open Sans) wie im PDF — keine Einbettung, Aussehen je Rechner.
+ *
+ * WCAG AA: Reines #86BC25 ist als Text zu hell (nur 3:1). Daher im HELLEN Set der
+ * Textakzent = dunkelgrün #046A38, das Signalgrün sitzt nur auf Flächen/Balken/Punkten
+ * (schwarze Titelfolie, Fortschrittsbalken, Button). Im DUNKLEN Set trägt das Signalgrün
+ * als Textakzent. Nach jeder Wertänderung mit scripts/kontrast.py neu prüfen. */
+:root{
+  --d-bg:#F7F8F4; --d-surface:#FFFFFF; --d-surface-sunk:#ECEFE7;
+  --d-ink:#121212; --d-ink-2:#3A3D3B; --d-ink-3:#5C5F5C; --d-ink-4:#75787B;
+  --d-line:#D9DBDB; --d-line-strong:#BFC2C0;
+  --d-accent:#046A38; --d-accent-strong:#023D20; --d-accent-mid:#0E8A49;
+  --d-accent-soft:#86BC25; --d-accent-pale:#D6E8BD;
+  --d-mark:#046A38;
+  --d-ai:#1F5673; --d-ai-bg:#EAF1F4; --d-ai-line:#CFE0E7; --d-ai-text:#163F54;
+  --d-font-display:"Segoe UI","Open Sans",Arial,Helvetica,sans-serif;
+  --d-font-text:"Segoe UI","Open Sans",Arial,Helvetica,sans-serif;
+  --d-font-data:ui-monospace,"Cascadia Code","Cascadia Mono",Consolas,monospace;
+  --d-wm-weight:700;
+  --d-radius-action:3px; --d-radius-surface:2px;
+  --d-shadow:0 8px 24px rgba(0,0,0,.12); --d-dur:120ms;
+
+  --d-brand-bg:#000000; --d-on-brand:#FFFFFF; --d-on-brand-2:#C9CCCB;
+  --d-on-brand-mark:#86BC25; --d-on-brand-logo:#FFFFFF;
+  --d-on-brand-line:#3A3D3B; --d-on-brand-hover:#1A1A1A; --d-on-brand-hint:#C9CCCB;
+  --d-on-brand-track:#3A3D3B; --d-on-brand-fill:#86BC25;
+
+  --d-player-bg:#111314; --d-player-line:#3A3D3B; --d-player-line-2:#1E2021;
+  --d-player-ink:#F1F2F2; --d-player-meta:#A9CB6B; --d-player-video:#000000;
+  --d-player-btn:#86BC25; --d-player-btn-hover:#6FA01E; --d-player-btn-ink:#111314;
+}
+:root[data-theme="dark"]{
+  --d-bg:#0E100E; --d-surface:#171A16; --d-surface-sunk:#0A0C0A;
+  --d-ink:#F1F2F0; --d-ink-2:#C6C9C4; --d-ink-3:#9CA09A; --d-ink-4:#6E726C;
+  --d-line:#262A24; --d-line-strong:#3A3F38;
+  --d-accent:#86BC25; --d-accent-strong:#A6D957; --d-accent-mid:#6FA01E;
+  --d-accent-soft:#3E5A17; --d-accent-pale:#20300C;
+  --d-mark:#86BC25;
+  --d-ai:#6FB3D4; --d-ai-bg:#132029; --d-ai-line:#243742; --d-ai-text:#BBDCEC;
+}
+
+/* Wortmarke „Deloitte." — Schriftzug folgt der Umgebung (ink/weiß), der Punkt bleibt
+ * immer Deloitte-Grün. So wie das Cover im PDF-Generator. */
+.lockup .wm .dot{color:#86BC25;font-weight:700;}
+.chrome .lockup .wm{color:var(--d-ink);}
+body.on-brand .chrome .lockup .wm{color:var(--d-on-brand-logo);}
+
+/* ---- Engine ---- */
+/* ============================================================
+ * Präsentations-Engine — markenneutral
+ * Alle Farben, Schriften und Radien kommen aus den --d-*-Token des Themes.
+ * Drei Modi über Klassen an <html>:
+ *   deck      ab 900 × 560 px mit JavaScript: eine Folie pro Bildschirm
+ *   (keine)   Lesemodus — Handy, Mail-Vorschau, ohne JS: Folien untereinander
+ *   deck pdf  gesetzt von pdf_bauen.js: jede Folie eine Seite 1920 × 1080
+ * Grundregeln: Folieninhalt nie unter 24 px, keine Folienübergänge,
+ * keine eingeflogenen Aufzählungen, keine Kursive.
+ * ============================================================ */
+
+/* Deck-Maße (Größen, keine Farben — ein Theme darf sie überschreiben) */
+:root{
+  --fs-h:clamp(40px,4.4vw,66px);
+  --fs-lead:clamp(28px,2.5vw,38px);
+  --fs-body:clamp(26px,2.1vw,32px);
+  --fs-small:24px;
+  --fs-eyebrow:24px;
+  --pad-x:clamp(32px,5vw,96px);
+  --pad-y:clamp(20px,4vh,56px);
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{font-family:var(--d-font-text);-webkit-font-smoothing:antialiased}
+body{background:var(--d-bg);color:var(--d-ink);
+  font-size:var(--fs-body);line-height:1.45}
+html.deck body{overflow:hidden}
+i,em,cite,dfn,var,address{font-style:normal}
+:focus-visible{outline:2px solid var(--d-accent);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{transition:none!important;animation:none!important;scroll-behavior:auto!important}
+}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+
+/* ---------- Folien ---------- */
+.slide{display:flex;position:relative;
+  padding:clamp(40px,7vw,72px) var(--pad-x);
+  flex-direction:column;justify-content:center;justify-content:safe center;
+  gap:clamp(16px,3vh,36px);
+  background:var(--d-bg);color:var(--d-ink)}
+html.deck main{position:fixed;inset:0}
+html.deck .slide{display:none;position:absolute;inset:0;overflow:hidden;
+  padding:calc(var(--pad-y) + 56px) var(--pad-x) calc(var(--pad-y) + 28px)}
+html.deck .slide.active{display:flex}
+
+.eyebrow{font-family:var(--d-font-data);font-weight:500;font-size:var(--fs-eyebrow);
+  letter-spacing:.16em;text-transform:uppercase;color:var(--d-mark)}
+h1,h2{font-family:var(--d-font-display);font-weight:700;letter-spacing:-.02em;
+  font-size:var(--fs-h);line-height:1.08;max-width:28ch}
+.lead{font-size:var(--fs-lead);line-height:1.35;color:var(--d-ink-2);max-width:38ch}
+
+ul.points{list-style:none;display:flex;flex-direction:column;gap:clamp(12px,2.2vh,24px);max-width:62ch}
+ul.points li{position:relative;padding-left:40px;font-size:var(--fs-body);line-height:1.4;color:var(--d-ink)}
+ul.points li::before{content:"";position:absolute;left:0;top:.62em;width:22px;height:2px;
+  background:var(--d-accent)}
+
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,3vw,48px);align-items:start}
+.cols-wide-right{grid-template-columns:5fr 6fr}
+.cols-wide-left{grid-template-columns:6fr 5fr}
+.stack{display:flex;flex-direction:column;gap:clamp(12px,2vh,20px)}
+
+/* ---------- Karten ---------- */
+.card{background:var(--d-surface);border:1px solid var(--d-line);
+  border-radius:var(--d-radius-surface);padding:clamp(16px,2.4vh,28px) clamp(18px,2vw,32px)}
+.card .eyebrow{display:flex;align-items:center;gap:12px;font-size:var(--fs-eyebrow)}
+.card ul.points{margin-top:16px}
+.card-title{color:var(--d-accent)}
+
+/* Messwert-Karte: gefüllter Punkt, Wert in der Akzentfarbe */
+.card-measured .eyebrow{color:var(--d-accent)}
+.card-measured .eyebrow::before{content:"";width:13px;height:13px;border-radius:50%;
+  background:var(--d-accent);flex:none}
+.value{font-family:var(--d-font-data);font-weight:500;font-variant-numeric:tabular-nums;
+  font-size:clamp(44px,4vw,62px);line-height:1.1;color:var(--d-accent);margin-top:8px}
+.value-sub{font-size:var(--fs-small);color:var(--d-ink-2);margin-top:6px}
+
+/* KI-Karte: Raute als Kontur, eigene Farbfamilie — Deutung, keine Messung */
+.card-ai{background:var(--d-ai-bg);border-color:var(--d-ai-line)}
+.card-ai .eyebrow{color:var(--d-ai)}
+.card-ai .eyebrow::before{content:"";width:12px;height:12px;flex:none;
+  border:2px solid var(--d-ai);transform:rotate(45deg)}
+.card-ai p{color:var(--d-ai-text);font-size:var(--fs-body);line-height:1.4;margin-top:10px;max-width:46ch}
+
+/* Aussage eines Menschen: Text auf Grundfläche, Eyebrow aus Worten, kein Herkunftszeichen */
+.card-human{background:var(--d-bg)}
+.card-human .eyebrow{color:var(--d-ink-2);letter-spacing:.12em}
+.card-human p{margin-top:10px;font-size:var(--fs-body);line-height:1.4}
+.pair{display:grid;grid-template-columns:1fr auto 1fr;gap:14px;align-items:stretch}
+.match-word{align-self:center;justify-self:center;background:var(--d-surface-sunk);
+  color:var(--d-ink-2);font-family:var(--d-font-data);font-weight:500;
+  font-size:var(--fs-small);letter-spacing:.16em;text-transform:uppercase;
+  padding:10px 18px;border-radius:var(--d-radius-surface)}
+
+/* Hinweiskarte (vertieft) */
+.card-sunk{background:var(--d-surface-sunk);border:1px solid var(--d-line);
+  padding:clamp(14px,2vh,22px) clamp(18px,2vw,28px);
+  font-size:var(--fs-small);line-height:1.45;color:var(--d-ink-2);max-width:70ch}
+
+/* ---------- Platzhalter (gestreift, Beschriftung in der Datenschrift) ---------- */
+.placeholder{display:flex;align-items:center;justify-content:center;text-align:center;
+  border:1px solid var(--d-line-strong);min-height:180px;padding:24px;
+  background:repeating-linear-gradient(45deg,var(--d-surface-sunk) 0 14px,var(--d-bg) 14px 28px)}
+.placeholder span{font-family:var(--d-font-data);font-weight:500;font-size:var(--fs-small);
+  letter-spacing:.08em;color:var(--d-ink-2);background:var(--d-bg);
+  padding:10px 16px;border:1px solid var(--d-line-strong)}
+
+/* ---------- Fotos und Abbildungen (Beschriftung außerhalb des Bildes) ---------- */
+.person{display:grid;grid-template-columns:auto 1fr;gap:clamp(16px,2vw,28px);align-items:center}
+.person img{display:block;width:clamp(120px,24vh,250px);height:auto;aspect-ratio:1;object-fit:cover}
+.person-name{font-family:var(--d-font-display);font-weight:600;font-size:var(--fs-lead);line-height:1.15}
+.person-role{font-size:var(--fs-small);line-height:1.35;color:var(--d-ink-2);margin-top:8px}
+.figure img{display:block;width:100%;height:auto;border:1px solid var(--d-line-strong)}
+.figure figcaption,.shot figcaption{font-size:var(--fs-small);line-height:1.35;color:var(--d-ink-2);margin-top:10px}
+
+/* Folie mit hoher Abbildung rechts (Screenshot im Hochformat) */
+html.deck .slide-split{flex-direction:row;align-items:center;gap:clamp(24px,3vw,56px)}
+.split-main{flex:1 1 auto;min-width:0;display:flex;flex-direction:column;gap:clamp(12px,2.4vh,28px)}
+/* Breite folgt dem Bild (Höhe fest); die Unterschrift bricht in dieser Breite um */
+html.deck .shot{flex:none;width:min-content}
+html.deck .shot img{height:calc(100vh - 2 * var(--pad-y) - 192px);width:auto}
+.shot img{display:block;width:100%;height:auto;border:1px solid var(--d-line-strong)}
+
+/* ---------- Videoplayer — dunkle Insel in beiden Modi ---------- */
+.player{background:var(--d-player-bg);border:1px solid var(--d-player-line);display:flex;flex-direction:column;min-width:0}
+.player-head{display:flex;align-items:baseline;gap:16px;justify-content:space-between;
+  padding:12px 18px;border-bottom:1px solid var(--d-player-line-2)}
+.player-head .pt{font-family:var(--d-font-display);font-weight:600;font-size:var(--fs-small);color:var(--d-player-ink)}
+.player-head .pm{font-family:var(--d-font-data);font-weight:500;font-size:var(--fs-small);
+  letter-spacing:.16em;text-transform:uppercase;color:var(--d-player-meta);white-space:nowrap}
+.player-stage{position:relative;line-height:0}
+.player video{display:block;width:100%;height:auto;max-height:var(--video-max,56vh);background:var(--d-player-video)}
+.player .start{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:none}
+.player .start button,.pdf-play span{height:52px;padding:0 28px;border-radius:var(--d-radius-action);
+  background:var(--d-player-btn);color:var(--d-player-btn-ink);font-weight:600;font-size:var(--fs-small);
+  font-family:var(--d-font-text)}
+.player .start button:hover{background:var(--d-player-btn-hover);transition:background var(--d-dur) linear}
+.player.started .start{display:none}
+html:not(.js) .player .start{display:none}
+/* Link zum Video im Browser: im Lesemodus und im PDF sichtbar */
+.video-link{display:none;padding:12px 18px;border-top:1px solid var(--d-player-line-2);line-height:1.35;
+  font-size:var(--fs-small);font-weight:600;color:var(--d-player-ink);text-decoration:underline;
+  text-underline-offset:.18em;overflow-wrap:anywhere}
+html:not(.deck) .video-link{display:block}
+/* Im PDF ersetzt eine Link-Fläche den Startknopf */
+.pdf-play{display:none;position:absolute;inset:0;align-items:center;justify-content:center;text-decoration:none}
+.pdf-play span{display:inline-flex;align-items:center;line-height:1}
+/* Video füllt den Rest der Folie, Breite folgt dem 16:9-Bild */
+html.deck .player-fill{flex:1 1 auto;min-height:140px;align-self:center;max-width:100%;
+  display:flex;flex-direction:column}
+html.deck .player-fill .player-stage{flex:1;min-height:0;display:flex;justify-content:center}
+html.deck .player-fill video{height:100%;width:auto;max-width:100%;max-height:none;aspect-ratio:16/9}
+
+/* ---------- Phasenleiste: nummerierte Marken auf einer Linie ---------- */
+.phases{display:grid;grid-template-columns:repeat(var(--n,5),1fr);gap:clamp(10px,1.4vw,24px);position:relative}
+.phases::before{content:"";position:absolute;left:0;right:0;top:9px;height:2px;background:var(--d-accent-soft)}
+.phase{position:relative;padding-top:34px}
+.phase::before{content:"";position:absolute;top:0;left:0;width:20px;height:20px;border-radius:50%;
+  background:var(--d-accent);border:3px solid var(--d-bg)}
+
+/* ---------- Schrittreihe ---------- */
+.steps{display:grid;grid-template-columns:repeat(var(--n,4),1fr);gap:clamp(12px,1.6vw,28px)}
+.phase .num,.step .num{font-family:var(--d-font-data);font-weight:500;font-size:var(--fs-eyebrow);
+  letter-spacing:.16em;color:var(--d-mark)}
+.phase .nam,.step .nam{font-family:var(--d-font-display);font-weight:600;
+  font-size:clamp(26px,1.9vw,32px);line-height:1.15;margin:6px 0 8px}
+.phase .des,.step .des{font-size:var(--fs-small);line-height:1.35;color:var(--d-ink-2)}
+
+/* ---------- Diagramme (Inline-SVG, Farben über var(--d-*)) ---------- */
+.diagram{width:100%;height:auto}
+.diagram text{font-family:var(--d-font-text)}
+.diagram .dt{font-family:var(--d-font-display);font-weight:600}
+.diagram .dm{font-family:var(--d-font-data);font-weight:500;letter-spacing:.12em}
+.diagram-small{max-height:30vh}
+
+/* ---------- Titel- und Schlussfolie (zweite Deckfarbe) ---------- */
+.slide--brand{background:var(--d-brand-bg);color:var(--d-on-brand)}
+.slide--brand .eyebrow{color:var(--d-on-brand-mark)}
+.slide--brand h1{max-width:18ch}
+.slide--brand .lead{color:inherit}
+.slide--brand .step .num{color:var(--d-on-brand-mark)}
+.slide--brand .step .des{color:var(--d-on-brand-2)}
+
+.lockup{display:inline-flex;align-items:center;gap:.55em;color:currentColor}
+.lockup svg,.lockup img{width:1.32em;height:1.32em;display:block;flex:none;object-fit:contain}
+.lockup .wm{font-family:var(--d-font-display);font-weight:var(--d-wm-weight,500);letter-spacing:-.025em;
+  line-height:1;white-space:nowrap}
+.lockup .wm b{font-weight:700}
+.hero{font-size:clamp(56px,6vw,88px)}
+/* Co-Branding: Partner zuerst, Trennstrich in Textfarbe mit 45 % Deckkraft, dann die eigene Marke.
+ * Partnerlogo unverändert, höchstens 1,3 × Signethöhe (Signet = 1,32 em). */
+.cobrand{display:flex;align-items:center;gap:.45em;font-size:clamp(56px,6vw,88px)}
+.cobrand .crest{display:block;height:calc(1.3 * 1.32em);width:auto}
+.cobrand-sep{flex:none;width:2px;height:1em;background:currentColor;opacity:.45}
+.cobrand .lockup{font-size:1em}
+.claim{font-size:clamp(24px,1.8vw,28px);line-height:1.3;color:var(--d-ink-2)}
+.claim a{color:inherit;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.18em}
+.slide--brand .claim{color:var(--d-on-brand-2)}
+
+/* ---------- Bedienleiste — Werkzeug der vortragenden Person, kein Folieninhalt ---------- */
+.chrome{position:sticky;top:0;z-index:40;display:flex;align-items:center;
+  gap:12px;padding:10px var(--pad-x);color:var(--d-ink-2);font-size:16px;
+  background:var(--d-bg);border-bottom:1px solid var(--d-line)}
+html.deck .chrome{position:fixed;left:0;right:0;background:none;border-bottom:0}
+.chrome .lockup{font-size:19px;color:var(--d-accent)}
+.chrome .sp{flex:1}
+.chrome .counter{font-family:var(--d-font-data);font-weight:500;font-size:17px;
+  letter-spacing:.08em;font-variant-numeric:tabular-nums}
+.cbtn{display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 14px;
+  border:1px solid var(--d-line-strong);border-radius:var(--d-radius-action);
+  color:var(--d-ink-2);background:none;font-size:16px;font-weight:600;
+  transition:background var(--d-dur) linear}
+.cbtn:hover{background:var(--d-surface-sunk)}
+.cbtn kbd{font-family:var(--d-font-data);font-size:13px;font-weight:500;
+  border:1px solid var(--d-line-strong);border-radius:3px;padding:1px 5px;color:var(--d-ink-3)}
+body.on-brand .chrome{color:var(--d-on-brand-2)}
+body.on-brand .chrome .lockup{color:var(--d-on-brand-logo)}
+body.on-brand .cbtn{color:var(--d-on-brand-2);border-color:var(--d-on-brand-line)}
+body.on-brand .cbtn:hover{background:var(--d-on-brand-hover)}
+body.on-brand .cbtn kbd{color:var(--d-on-brand-2);border-color:var(--d-on-brand-line)}
+
+.nav{position:fixed;right:var(--pad-x);bottom:22px;z-index:40;display:flex;gap:10px}
+.nav .cbtn{width:48px;height:48px;padding:0;justify-content:center}
+.nav svg{width:20px;height:20px}
+
+.progress{position:fixed;left:0;right:0;bottom:0;height:5px;background:var(--d-line);z-index:40}
+.progress i{display:block;height:100%;width:0;background:var(--d-accent)}
+body.on-brand .progress{background:var(--d-on-brand-track)}
+body.on-brand .progress i{background:var(--d-on-brand-fill)}
+
+.hint{position:fixed;left:var(--pad-x);bottom:16px;z-index:40;
+  font-family:var(--d-font-data);font-size:14px;letter-spacing:.06em;color:var(--d-ink-3)}
+body.on-brand .hint{color:var(--d-on-brand-hint)}
+
+/* ---------- Sprechernotizen (Taste N) ---------- */
+.slide .notes{display:none}
+.notes-panel{position:fixed;left:0;right:0;bottom:0;z-index:60;display:none;
+  background:var(--d-surface);border-top:1px solid var(--d-line-strong);
+  box-shadow:var(--d-shadow);padding:20px var(--pad-x) 26px;max-height:38vh;overflow:auto}
+.notes-panel .eyebrow{font-size:16px;margin-bottom:8px}
+.notes-panel .ntext{font-size:22px;line-height:1.5;color:var(--d-ink);max-width:90ch}
+body.show-notes .notes-panel{display:block}
+
+/* ---------- Kleine Höhen (Laptop 768 px) ---------- */
+@media (max-height:820px){
+  :root{--fs-h:clamp(32px,3.4vw,46px);--fs-lead:clamp(25px,2.2vw,30px);--fs-body:clamp(24px,2vw,28px)}
+  .slide{gap:clamp(10px,2vh,20px)}
+  .phase .des,.step .des{line-height:1.3}
+  .card{padding:12px 18px}
+  .value{font-size:clamp(34px,3vw,44px)}
+  .card-human p{font-size:var(--fs-small)}
+  ul.points{gap:10px}
+  ul.points li{line-height:1.3}
+  .card ul.points li{font-size:var(--fs-small)}
+  .card-sunk{padding:12px 18px}
+  .diagram-small{max-height:24vh}
+}
+
+/* ---------- Lesemodus (ohne Klasse „deck“): Folien untereinander ---------- */
+html:not(.deck){
+  --fs-h:clamp(28px,4.2vw,56px);--fs-lead:clamp(19px,2.2vw,30px);--fs-body:clamp(17px,1.8vw,26px);
+  --fs-small:clamp(16px,1.5vw,22px);--fs-eyebrow:clamp(13px,1.3vw,20px);--pad-x:clamp(16px,5vw,96px)}
+html:not(.deck) .nav,html:not(.deck) .progress,html:not(.deck) .hint,
+html:not(.deck) .counter,html:not(.deck) #fsBtn,html:not(.deck) #notesBtn,html:not(.deck) .cbtn kbd{display:none}
+html:not(.js) .chrome .cbtn{display:none}
+html:not(.deck) .slide{gap:clamp(14px,2.5vw,28px)}
+html:not(.deck) .cobrand,html:not(.deck) .hero{font-size:clamp(28px,7vw,88px)}
+html:not(.deck) .claim{font-size:clamp(17px,1.8vw,28px)}
+html:not(.deck) .value{font-size:clamp(32px,4vw,56px)}
+html:not(.deck) .phase .nam,html:not(.deck) .step .nam{font-size:clamp(20px,2vw,30px)}
+html:not(.deck) ul.points{gap:12px}
+html:not(.deck) ul.points li{padding-left:30px}
+html:not(.deck) ul.points li::before{width:16px}
+html:not(.deck) .person img{width:clamp(88px,22vw,200px)}
+html:not(.deck) .phases{grid-template-columns:repeat(auto-fit,minmax(170px,1fr));row-gap:24px}
+html:not(.deck) .phases::before{display:none}
+html:not(.deck) .steps{grid-template-columns:repeat(auto-fit,minmax(200px,1fr));row-gap:20px}
+html:not(.deck) .slide-split{flex-direction:column;align-items:stretch}
+html:not(.deck) .shot{max-width:560px}
+html:not(.deck) .player video{max-height:none}
+html:not(.deck) .diagram-small{max-height:none}
+.swipe-hint{display:none;font-size:var(--fs-small);color:var(--d-ink-2)}
+@media (max-width:760px){
+  html:not(.deck) .swipe-hint{display:block}
+  html:not(.deck) .cols{grid-template-columns:1fr !important}
+  html:not(.deck) .pair{grid-template-columns:1fr !important}
+  /* breite Diagramme: lesbare Größe behalten, seitlich wischen */
+  html:not(.deck) .diagram-wrap{overflow-x:auto;margin:0 calc(-1 * var(--pad-x));padding:0 var(--pad-x)}
+  html:not(.deck) .diagram-wrap .diagram{min-width:720px}
+}
+
+/* ---------- PDF (Klassen „deck pdf“): jede Folie eine Seite 1920 × 1080 ---------- */
+@page{size:1920px 1080px;margin:0}
+html.pdf{--pad-y:43px;--pad-x:96px}
+html.pdf body{overflow:visible}
+html.pdf main{position:static}
+html.pdf .slide{display:flex;position:relative;inset:auto;width:1920px;height:1080px;break-after:page}
+html.pdf .slide:last-of-type{break-after:auto}
+html.pdf .chrome,html.pdf .nav,html.pdf .progress,html.pdf .hint,html.pdf .swipe-hint,
+html.pdf .player .start,html.pdf .notes-panel{display:none}
+html.pdf .pdf-play{display:flex}
+html.pdf .video-link{display:block}
+html.pdf .shot img{height:calc(1080px - 2 * 43px - 192px)}
+html.pdf .diagram-small{max-height:324px}
+
+/* ---- Folienspezifische Ergänzungen ---- */
+</style>
+</head>
+<body>
+
+<!-- Bedienleiste -->
+<header class="chrome">
+  <span class="lockup"><span class="wm"><b>Deloitte</b><span class="dot">.</span></span></span>
+  <span class="sp"></span>
+  <span class="counter" id="counter">01 / 01</span>
+  <button class="cbtn" id="themeBtn" aria-label="Zwischen hellem und dunklem Modus wechseln">Dunkel <kbd>T</kbd></button>
+  <button class="cbtn" id="notesBtn" aria-label="Sprechernotizen einblenden">Notizen <kbd>N</kbd></button>
+  <button class="cbtn" id="fsBtn" aria-label="Vollbild umschalten">Vollbild <kbd>F</kbd></button>
+</header>
+
+<main id="deck">
+
+<!-- 1 · Titel -->
+<section class="slide slide--brand">
+  <p class="eyebrow">Kennenlernen · [Kundenname]</p>
+  <div>
+    <div class="hero"><span class="lockup"><span class="wm"><b>Deloitte</b><span class="dot">.</span></span></span></div>
+    <p class="claim" style="margin-top:14px">Beispiel-Deck zum neuen Deloitte-Präsentations-Skill.</p>
+  </div>
+  <h1>Wie wir zusammenarbeiten können.</h1>
+  <aside class="notes">Kurz begrüßen, den Rahmen (20 Minuten, Raum für Fragen am Ende) und das Ziel des Termins nennen.</aside>
+</section>
+
+<!-- 2 · Wer wir sind -->
+<section class="slide">
+  <p class="eyebrow">Wer wir sind</p>
+  <h2>Ein Team, das Strategie und Umsetzung zusammen denkt.</h2>
+  <ul class="points">
+    <li>Wir begleiten [Branche]-Kunden von der ersten Idee bis zum laufenden Betrieb.</li>
+    <li>Jedes Projekt bekommt ein festes Kernteam mit einem klaren Ansprechpartner.</li>
+    <li>Wir arbeiten in kurzen Zyklen und zeigen früh greifbare Ergebnisse.</li>
+  </ul>
+  <aside class="notes">Hier zwei, drei Sätze zur eigenen Rolle und zur Erfahrung im konkreten Umfeld des Kunden ergänzen.</aside>
+</section>
+
+<!-- 3 · Was wir bieten -->
+<section class="slide">
+  <p class="eyebrow">Angebot</p>
+  <h2>Drei Bausteine, die aufeinander aufbauen.</h2>
+  <div class="steps" style="--n:3">
+    <div class="step"><p class="num">01</p><p class="nam">Analyse</p><p class="des">Wir schauen uns den Ist-Stand an und benennen die größten Hebel.</p></div>
+    <div class="step"><p class="num">02</p><p class="nam">Pilot</p><p class="des">Ein eng umrissener Testlauf zeigt in Wochen, ob die Idee trägt.</p></div>
+    <div class="step"><p class="num">03</p><p class="nam">Rollout</p><p class="des">Was sich bewährt, bringen wir in die Breite — mit Ihrem Team.</p></div>
+  </div>
+  <aside class="notes">Betonen, dass der Pilot bewusst klein gehalten ist, damit das Risiko überschaubar bleibt.</aside>
+</section>
+
+<!-- 4 · Zahlen (Beispielwerte) -->
+<section class="slide">
+  <p class="eyebrow">Größenordnung</p>
+  <h2>Womit ein Pilot typischerweise startet.</h2>
+  <div class="cols">
+    <div class="card card-measured">
+      <p class="eyebrow card-title">Dauer bis zum Ergebnis</p>
+      <p class="value">6–8</p>
+      <p class="value-sub">Wochen bis zum ersten belastbaren Befund. Beispielwert.</p>
+    </div>
+    <div class="card card-measured">
+      <p class="eyebrow card-title">Kernteam</p>
+      <p class="value">3–4</p>
+      <p class="value-sub">Personen, gemischt aus beiden Häusern. Beispielwert.</p>
+    </div>
+  </div>
+  <div class="card-sunk">Alle Zahlen sind Beispielwerte zur Veranschaulichung des Formats — vor einem echten Termin durch belastbare Werte ersetzen.</div>
+  <aside class="notes">Klarstellen, dass dies Richtwerte sind; die echten Zahlen hängen vom Umfang ab.</aside>
+</section>
+
+<!-- 5 · Ablauf -->
+<section class="slide">
+  <p class="eyebrow">Nächste Wochen</p>
+  <h2>So könnte ein Pilot ablaufen.</h2>
+  <div class="phases" style="--n:4">
+    <div class="phase"><p class="num">01</p><p class="nam">Kickoff</p><p class="des">Ziele und Erfolgskriterien gemeinsam festlegen.</p></div>
+    <div class="phase"><p class="num">02</p><p class="nam">Aufbau</p><p class="des">Daten und Zugänge klären, erstes Setup.</p></div>
+    <div class="phase"><p class="num">03</p><p class="nam">Testlauf</p><p class="des">In kurzen Zyklen bauen und messen.</p></div>
+    <div class="phase"><p class="num">04</p><p class="nam">Auswertung</p><p class="des">Ergebnis bewerten, über den Rollout entscheiden.</p></div>
+  </div>
+  <aside class="notes">Darauf hinweisen, dass nach der Auswertung ein echter Go/No-Go-Punkt steht — ohne Folgezwang.</aside>
+</section>
+
+<!-- 6 · Abschluss -->
+<section class="slide slide--brand">
+  <p class="eyebrow">Nächste Schritte</p>
+  <h2>So kommen wir ins Tun.</h2>
+  <div class="steps" style="--n:3;max-width:1200px">
+    <div class="step"><p class="num">01</p><p class="nam">Termin</p><p class="des">Einen Workshop zur Zielklärung ansetzen.</p></div>
+    <div class="step"><p class="num">02</p><p class="nam">Umfang</p><p class="des">Den Piloten gemeinsam zuschneiden.</p></div>
+    <div class="step"><p class="num">03</p><p class="nam">Start</p><p class="des">Kickoff-Datum festlegen.</p></div>
+  </div>
+  <p class="lead">Welche Fragen haben Sie?</p>
+  <p class="claim"><a href="mailto:kontakt@beispiel.de">kontakt@beispiel.de</a></p>
+  <aside class="notes">Raum für Fragen lassen; häufige Einwände (Aufwand, Datenschutz, interne Kapazität) vorbereitet haben.</aside>
+</section>
+
+</main>
+
+<!-- Navigation -->
+<div class="nav">
+  <button class="cbtn" id="prevBtn" aria-label="Vorherige Folie">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square"><path d="M14.5 4.5 L7 12 L14.5 19.5"/></svg>
+  </button>
+  <button class="cbtn" id="nextBtn" aria-label="Nächste Folie">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square"><path d="M9.5 4.5 L17 12 L9.5 19.5"/></svg>
+  </button>
+</div>
+
+<p class="hint">Pfeiltasten: blättern · T: hell/dunkel · N: Notizen · F: Vollbild</p>
+
+<div class="progress" aria-hidden="true"><i id="progressFill"></i></div>
+
+<div class="notes-panel" id="notesPanel" aria-live="polite">
+  <p class="eyebrow">Sprechernotizen</p>
+  <div class="ntext" id="notesText"></div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var root = document.documentElement;
+  var slides = Array.prototype.slice.call(document.querySelectorAll(".slide"));
+  var counter = document.getElementById("counter");
+  var fill = document.getElementById("progressFill");
+  var notesText = document.getElementById("notesText");
+  var themeBtn = document.getElementById("themeBtn");
+  var deckMQ = window.matchMedia("(min-width: 900px) and (min-height: 560px)");
+  var LABEL = { de: { dark: "Dunkel ", light: "Hell " }, en: { dark: "Dark ", light: "Light " } };
+  var label = LABEL[(root.lang || "de").slice(0, 2)] || LABEL.de;
+  var idx = 0;
+
+  function isDeck(){ return root.classList.contains("deck"); }
+  function pad(n){ return (n < 10 ? "0" : "") + n; }
+  function pauseVideos(){
+    Array.prototype.forEach.call(document.querySelectorAll("video"), function(v){ v.pause(); });
+  }
+
+  function go(n){
+    idx = Math.max(0, Math.min(slides.length - 1, n));
+    if (!isDeck()) {
+      document.body.classList.remove("on-brand");
+      if (idx > 0) { slides[idx].scrollIntoView(); }
+      return;
+    }
+    slides.forEach(function(s, k){ s.classList.toggle("active", k === idx); });
+    document.body.classList.toggle("on-brand", slides[idx].classList.contains("slide--brand"));
+    if (counter) { counter.textContent = pad(idx + 1) + " / " + pad(slides.length); }
+    if (fill) { fill.style.width = (((idx + 1) / slides.length) * 100) + "%"; }
+    if (notesText) {
+      var note = slides[idx].querySelector(".notes");
+      notesText.innerHTML = note ? note.innerHTML : "—";
+    }
+    pauseVideos();
+    try { history.replaceState(null, "", "#" + (idx + 1)); } catch (e) {}
+  }
+  function next(){ go(idx + 1); }
+  function prev(){ go(idx - 1); }
+
+  /* Farbschema: Standard hell (Sonnenlicht, Beamer), Umschalten per Knopf oder T */
+  function applyTheme(t){
+    if (t === "dark") { root.setAttribute("data-theme", "dark"); }
+    else { root.removeAttribute("data-theme"); }
+    if (themeBtn) { themeBtn.firstChild.textContent = t === "dark" ? label.light : label.dark; }
+    try { localStorage.setItem("deck-theme", t); } catch (e) {}
+  }
+  function toggleTheme(){ applyTheme(root.hasAttribute("data-theme") ? "light" : "dark"); }
+  var saved = null;
+  try { saved = localStorage.getItem("deck-theme"); } catch (e) {}
+  applyTheme(saved === "dark" ? "dark" : "light");
+
+  function toggleNotes(){ if (notesText) { document.body.classList.toggle("show-notes"); } }
+  function toggleFullscreen(){
+    if (document.fullscreenElement) { document.exitFullscreen(); }
+    else if (root.requestFullscreen) { root.requestFullscreen(); }
+  }
+
+  function on(id, fn){ var el = document.getElementById(id); if (el) { el.addEventListener("click", fn); } }
+  on("themeBtn", toggleTheme);
+  on("notesBtn", toggleNotes);
+  on("fsBtn", toggleFullscreen);
+  on("nextBtn", next);
+  on("prevBtn", prev);
+
+  /* Tastatur — im Lesemodus scrollen die Pfeiltasten wie gewohnt */
+  document.addEventListener("keydown", function(e){
+    if (!isDeck()) {
+      if (e.key === "t" || e.key === "T") { toggleTheme(); }
+      return;
+    }
+    if (e.target && (e.target.tagName === "VIDEO" || e.target.tagName === "BUTTON")) {
+      if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") { return; }
+    }
+    switch (e.key) {
+      case "ArrowRight": case "ArrowDown": case "PageDown": case " ":
+        e.preventDefault(); next(); break;
+      case "ArrowLeft": case "ArrowUp": case "PageUp":
+        e.preventDefault(); prev(); break;
+      case "Home": e.preventDefault(); go(0); break;
+      case "End": e.preventDefault(); go(slides.length - 1); break;
+      case "t": case "T": toggleTheme(); break;
+      case "n": case "N": toggleNotes(); break;
+      case "f": case "F": toggleFullscreen(); break;
+    }
+  });
+
+  /* Klick: rechts weiter, linkes Drittel zurück — Bedienelemente ausgenommen */
+  document.getElementById("deck").addEventListener("click", function(e){
+    if (!isDeck() || e.target.closest("video,button,a,.player,.notes-panel")) { return; }
+    if (e.clientX < window.innerWidth / 3) { prev(); } else { next(); }
+  });
+
+  /* Wischen */
+  var tx = null, ty = null;
+  document.addEventListener("touchstart", function(e){
+    if (!isDeck() || e.target.closest(".player,.notes-panel")) { tx = null; return; }
+    tx = e.changedTouches[0].clientX; ty = e.changedTouches[0].clientY;
+  }, { passive: true });
+  document.addEventListener("touchend", function(e){
+    if (tx === null) { return; }
+    var dx = e.changedTouches[0].clientX - tx;
+    var dy = e.changedTouches[0].clientY - ty;
+    if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy)) { if (dx < 0) { next(); } else { prev(); } }
+    tx = null;
+  }, { passive: true });
+
+  /* Startknopf der Player; „started“ auch bei Start über die native Leiste */
+  Array.prototype.forEach.call(document.querySelectorAll(".player"), function(p){
+    var v = p.querySelector("video");
+    var b = p.querySelector(".start button");
+    if (!v) { return; }
+    if (b) { b.addEventListener("click", function(){ v.play(); }); }
+    v.addEventListener("play", function(){ p.classList.add("started"); });
+  });
+
+  /* Untertitel als <script type="text/vtt"> in der Datei (Versandfassung): eine Blob-Adresse
+   * hat denselben Ursprung wie die Seite und lädt deshalb auch über file:// */
+  Array.prototype.forEach.call(document.querySelectorAll("track[data-vtt]"), function(t){
+    var src = document.getElementById(t.getAttribute("data-vtt"));
+    if (!src) { return; }
+    try { t.src = URL.createObjectURL(new Blob([src.textContent.replace(/^\s+/, "")], { type: "text/vtt" })); } catch (e) {}
+  });
+
+  /* Fenstergröße ändert sich (Drehen, Verkleinern): Modus neu bestimmen */
+  function applyMode(){ if (!root.classList.contains("pdf")) { root.classList.toggle("deck", deckMQ.matches); } go(idx); }
+  if (deckMQ.addEventListener) { deckMQ.addEventListener("change", applyMode); }
+  else if (deckMQ.addListener) { deckMQ.addListener(applyMode); }
+
+  var start = parseInt((location.hash || "").replace("#", ""), 10);
+  go(isNaN(start) ? 0 : start - 1);
+  window.deckGo = go; /* für pruefen.js */
+})();
+</script>
+</body>
+</html>

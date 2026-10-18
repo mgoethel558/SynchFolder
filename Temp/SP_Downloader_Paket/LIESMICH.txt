@@ -1,0 +1,69 @@
+================================================================
+ SharePoint Excel-Downloader  -  Kurzanleitung
+================================================================
+
+WAS MACHT DAS PROGRAMM?
+-----------------------
+Es durchsucht einen SharePoint-Ordner (inkl. aller Unterordner) und laedt
+die darin enthaltenen Excel-Dateien auf diesen Rechner herunter -- optional
+nur die, deren Dateiname mit einem bestimmten Text beginnt (z. B. "F2S").
+
+
+VORAUSSETZUNGEN
+---------------
+- Windows 10 oder 11 (64-Bit)
+- Internetverbindung (nur beim allerersten Start, zum Laden des Browsers)
+- Ein eigenes Konto mit Zugriff auf die betreffende SharePoint-Seite
+
+
+SO WIRD ES BENUTZT
+------------------
+1. Diesen Ordner komplett entpacken (falls noch als ZIP vorliegend) --
+   am besten z. B. nach C:\SP-Downloader. Keine Leerzeichen/OneDrive-Pfade
+   noetig, es funktioniert aber auch dort.
+
+2. Doppelklick auf  START_HIER.bat
+
+3. BEIM ERSTEN START wird einmalig ein Browser heruntergeladen (ca. 170 MB).
+   Das dauert ein paar Minuten. Danach ist das nie wieder noetig.
+
+4. Das Programm fragt nach der ORDNER-URL:
+   - In SharePoint den gewuenschten Ordner im Browser oeffnen
+   - Die Adresse aus der Adresszeile kopieren und hier einfuegen
+   - (Freigabe-Links "...sharepoint.com/:f:/r/..." funktionieren auch)
+
+5. Danach fragt es nach einem optionalen NAMENSANFANG:
+   - Leer lassen  -> alle Excel-Dateien
+   - "F2S" o.ae.  -> nur Dateien, deren Name so beginnt
+
+6. Ein Browserfenster oeffnet sich. Dort EINMALIG bei SharePoint anmelden
+   (E-Mail, Passwort, ggf. MFA). Die Anmeldung wird lokal gespeichert, sodass
+   kuenftige Laeufe ohne erneutes Login auskommen.
+
+7. Die Dateien landen im Unterordner  "Downloads"  -- die Ordnerstruktur
+   aus SharePoint bleibt dabei erhalten.
+
+
+SICHERHEIT / DATENSCHUTZ
+------------------------
+- Es werden KEINE Passwoerter im Programm gespeichert oder mitgeliefert.
+- Jede Person meldet sich mit dem EIGENEN Konto an und sieht ausschliesslich
+  Dateien, auf die sie ohnehin berechtigt ist.
+- Die gespeicherte Anmeldung liegt lokal und benutzerbezogen unter
+  %LOCALAPPDATA%\SP-Downloader\.pw-profile  -- NICHT im Paketordner. Dadurch
+  wird beim Weitergeben des Pakets niemals eine fremde Sitzung mitgegeben.
+  Zum vollstaendigen Abmelden diesen Ordner loeschen.
+- Es wird die offizielle, dokumentierte SharePoint-REST-API verwendet. Es
+  werden keine Sicherheitsmechanismen umgangen.
+
+
+BEI PROBLEMEN
+-------------
+- "Browser-Download fehlgeschlagen": Internetverbindung pruefen, ggf. Firmen-
+  Proxy/VPN beachten, dann START_HIER.bat erneut ausfuehren.
+- "Login-Timeout": Es bleiben 5 Minuten zum Anmelden. Danach einfach neu
+  starten.
+- "Konnte die Site nicht aus der URL ableiten": Bitte die VOLLE https-Adresse
+  des Ordners verwenden (nicht nur einen Teilpfad).
+
+================================================================

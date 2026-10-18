@@ -1,0 +1,21 @@
+{
+  "league": "CL",
+  "goalkeeper_count": 0,
+  "debut_age_distribution": {
+    "histogram": {},
+    "count": 0
+  },
+  "minutes_progression_by_age": {},
+  "club_mobility": {
+    "avg_transfers": 0.0,
+    "avg_distinct_clubs": 0.0
+  },
+  "career_length": {
+    "avg_years": null,
+    "count": 0
+  },
+  "typical_path": {
+    "share_with_youth_club": 0.0,
+    "share_with_loan": 0.0
+  }
+}

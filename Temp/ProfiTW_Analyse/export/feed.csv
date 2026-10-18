@@ -1,0 +1,4 @@
+transfer_id,player_id,player_name,from_club,to_club,from_league,to_league,transfer_date,season,window,type,is_loan,is_free
+t1,4,Alexander Nübel,Bayern München,VfB Stuttgart,L1,L1,2023-07-01,23/24,summer,permanent,False,False
+t2,2,Sven Ulreich,Bayern München,Borussia Dortmund,L1,L1,2022-08-15,22/23,summer,permanent,False,False
+t3,3,Gregor Kobel,SC Freiburg II,Borussia Dortmund,L2,L1,2021-07-01,21/22,summer,permanent,False,False

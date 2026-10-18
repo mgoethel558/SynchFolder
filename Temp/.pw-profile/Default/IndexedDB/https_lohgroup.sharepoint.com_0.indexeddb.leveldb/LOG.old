@@ -1,0 +1,13 @@
+2026/10/05-15:13:06.228 a87c Reusing MANIFEST C:\Users\mgoethel\OneDrive - Deloitte (O365D)\Documents\Projekt\SynchFolder\Temp\.pw-profile\Default\IndexedDB\https_lohgroup.sharepoint.com_0.indexeddb.leveldb/MANIFEST-000001
+2026/10/05-15:13:06.239 a87c Recovering log #4
+2026/10/05-15:13:06.242 a87c Reusing old log C:\Users\mgoethel\OneDrive - Deloitte (O365D)\Documents\Projekt\SynchFolder\Temp\.pw-profile\Default\IndexedDB\https_lohgroup.sharepoint.com_0.indexeddb.leveldb/000004.log 
+2026/10/05-15:13:17.173 a87c Level-0 table #8: started
+2026/10/05-15:13:17.228 a87c Level-0 table #8: 2010371 bytes OK
+2026/10/05-15:13:17.230 a87c Delete type=0 #4
+2026/10/05-15:13:17.235 a87c Compacting 1@1 + 1@2 files
+2026/10/05-15:13:17.285 a87c Generated table #9@1: 4137 keys, 2146971 bytes
+2026/10/05-15:13:17.290 a87c Generated table #10@1: 17 keys, 150764 bytes
+2026/10/05-15:13:17.291 a87c Compacted 1@1 + 1@2 files => 2297735 bytes
+2026/10/05-15:13:17.292 a87c compacted to: files[ 0 0 2 0 0 0 0 ]
+2026/10/05-15:13:17.293 a87c Delete type=2 #5
+2026/10/05-15:13:17.293 a87c Delete type=2 #8

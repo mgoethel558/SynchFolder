@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="{{SPRACHE}}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{TITEL}}</title>
+<meta name="description" content="{{BESCHREIBUNG}}">
+<script>
+/* Modus vor dem ersten Zeichnen festlegen: Präsentation ab 900 × 560 px, sonst Lesemodus */
+(function(r){ r.classList.add("js");
+  try { if (window.matchMedia("(min-width: 900px) and (min-height: 560px)").matches) { r.classList.add("deck"); } } catch (e) {}
+})(document.documentElement);
+</script>
+{{FAVICON}}
+<style>
+/* ==== Präsentation · erzeugt mit dem Skill „praesentation“ · Theme: {{THEME}} ====
+ * Eine Datei, offline lauffähig. Bilder und Videos: ./media daneben.
+ * Reihenfolge: Schriften → Theme-Token → Engine → folienspezifische Ergänzungen (ganz unten). */
+
+/* ---- Schriften (base64, kein Netzzugriff) ---- */
+{{SCHRIFTEN}}
+
+/* ---- Theme ---- */
+{{THEME_CSS}}
+
+/* ---- Engine ---- */
+{{ENGINE_CSS}}
+
+/* ---- Folienspezifische Ergänzungen ---- */
+</style>
+</head>
+<body>
+
+<!-- Bedienleiste -->
+<header class="chrome">
+  {{LOCKUP}}
+  <span class="sp"></span>
+  <span class="counter" id="counter">01 / 01</span>
+  <button class="cbtn" id="themeBtn" aria-label="{{L_THEME_ARIA}}">{{L_DARK}} <kbd>T</kbd></button>
+  <button class="cbtn" id="notesBtn" aria-label="{{L_NOTES_ARIA}}">{{L_NOTES}} <kbd>N</kbd></button>
+  <button class="cbtn" id="fsBtn" aria-label="{{L_FS_ARIA}}">{{L_FS}} <kbd>F</kbd></button>
+</header>
+
+<main id="deck">
+
+{{FOLIEN}}
+
+</main>
+
+<!-- Navigation -->
+<div class="nav">
+  <button class="cbtn" id="prevBtn" aria-label="{{L_PREV}}">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square"><path d="M14.5 4.5 L7 12 L14.5 19.5"/></svg>
+  </button>
+  <button class="cbtn" id="nextBtn" aria-label="{{L_NEXT}}">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square"><path d="M9.5 4.5 L17 12 L9.5 19.5"/></svg>
+  </button>
+</div>
+
+<p class="hint">{{L_HINT}}</p>
+
+<div class="progress" aria-hidden="true"><i id="progressFill"></i></div>
+
+<div class="notes-panel" id="notesPanel" aria-live="polite">
+  <p class="eyebrow">{{L_NOTES_TITLE}}</p>
+  <div class="ntext" id="notesText"></div>
+</div>
+
+<script>
+{{ENGINE_JS}}
+</script>
+</body>
+</html>

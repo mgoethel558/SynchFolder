@@ -1,0 +1,199 @@
+<!-- Galerie: jeder Baustein der Engine einmal. Folien, die nicht gebraucht werden, löschen;
+     Platzhalterbilder (gestreift / data:-SVG) durch echte Bilder in ./media ersetzen. -->
+
+<!-- 1 · Titel (Variante Co-Branding: siehe references/bausteine.md, „cobrand“) -->
+<section class="slide slide--brand">
+  <p class="eyebrow">Galerie · alle Bausteine</p>
+  <div>
+    <div class="hero">{{LOCKUP}}</div>
+    <p class="claim" style="margin-top:14px">Ein Claim in einem Satz.</p>
+  </div>
+  <h1>Die Titelfolie trägt die Kernaussage.</h1>
+  <aside class="notes">Titelfolie: Eyebrow (Anlass), Lockup groß, Claim, Kernaussage als h1.</aside>
+</section>
+
+<!-- 2 · Aussage mit Punkten -->
+<section class="slide">
+  <p class="eyebrow">Punkte</p>
+  <h2>Drei Punkte, jeder ein ganzer Satz.</h2>
+  <ul class="points">
+    <li>Höchstens vier Punkte pro Folie — sonst teilen.</li>
+    <li>Jeder Punkt ist eine vollständige Aussage, kein Stichwort.</li>
+    <li>Der Balken davor ist das einzige Aufzählungszeichen.</li>
+  </ul>
+  <aside class="notes">ul.points. Bei breiten Punkten style="max-width:70ch".</aside>
+</section>
+
+<!-- 3 · Personen -->
+<section class="slide">
+  <p class="eyebrow">Wer wir sind</p>
+  <h2>Zwei Personen nebeneinander.</h2>
+  <div class="cols">
+    <div class="card person">
+      <div class="placeholder" style="width:clamp(120px,24vh,250px);aspect-ratio:1;min-height:0;padding:8px"><span>FOTO 1:1</span></div>
+      <div>
+        <p class="person-name">Vorname Nachname</p>
+        <p class="person-role">Rolle · Bezug zum Thema</p>
+      </div>
+    </div>
+    <div class="card person">
+      <div class="placeholder" style="width:clamp(120px,24vh,250px);aspect-ratio:1;min-height:0;padding:8px"><span>FOTO 1:1</span></div>
+      <div>
+        <p class="person-name">Vorname Nachname</p>
+        <p class="person-role">Rolle</p>
+      </div>
+    </div>
+  </div>
+  <p class="lead" style="max-width:60ch">Ein Absatz in Lead-Größe ordnet ein, was die Karten nicht sagen.</p>
+  <aside class="notes">Echte Fotos: &lt;img src="./media/praes-name.jpg" width="640" height="640" alt="Porträt …"&gt;, quadratisch zugeschnitten.</aside>
+</section>
+
+<!-- 4 · Phasen -->
+<section class="slide">
+  <p class="eyebrow">Ablauf in Phasen</p>
+  <h2>Ein Vorgang hat fünf Phasen.</h2>
+  <div class="phases" style="--n:5">
+    <div class="phase"><p class="num">01</p><p class="nam">Erste</p><p class="des">Kurz, was hier passiert</p></div>
+    <div class="phase"><p class="num">02</p><p class="nam">Zweite</p><p class="des">Kurz, was hier passiert</p></div>
+    <div class="phase"><p class="num">03</p><p class="nam">Dritte</p><p class="des">Kurz, was hier passiert</p></div>
+    <div class="phase"><p class="num">04</p><p class="nam">Vierte</p><p class="des">Kurz, was hier passiert</p></div>
+    <div class="phase"><p class="num">05</p><p class="nam">Fünfte</p><p class="des">Kurz, was hier passiert</p></div>
+  </div>
+  <div class="card-sunk">Ein Beispiel in der vertieften Hinweiskarte macht die Phasen greifbar.</div>
+  <aside class="notes">.phases mit --n für die Anzahl (3–6).</aside>
+</section>
+
+<!-- 5 · Messung und Deutung -->
+<section class="slide">
+  <p class="eyebrow">Messung und Deutung</p>
+  <h2>Erst gemessen, dann eingeordnet.</h2>
+  <div class="cols" style="grid-template-columns:7fr 5fr">
+    <div class="stack">
+      <p class="lead" style="max-width:none">Eine Abbildung mit Unterschrift außerhalb des Bildes.</p>
+      <figure class="figure">
+        <div class="placeholder" style="aspect-ratio:3/1;min-height:0"><span>ABBILDUNG 3:1</span></div>
+        <figcaption>Die Unterschrift sagt, was zu sehen ist.</figcaption>
+      </figure>
+    </div>
+    <div class="stack">
+      <div class="card card-measured">
+        <p class="eyebrow">Gemessen</p>
+        <p class="value">0,42&nbsp;s</p>
+        <p class="value-sub">Bezeichnung · Grundlage</p>
+      </div>
+      <div class="card card-ai">
+        <p class="eyebrow">KI-Einschätzung</p>
+        <p>Eine Deutung in einem Satz — ohne Zahlen.</p>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">card-measured (Punkt, Akzentfarbe) und card-ai (Raute, eigene Farbfamilie) nie vermischen.</aside>
+</section>
+
+<!-- 6 · Schritte und Video -->
+<section class="slide">
+  <p class="eyebrow">Schritte</p>
+  <h2>Vom Anfang zum Ergebnis in vier Schritten.</h2>
+  <div class="steps" style="--n:4">
+    <div class="step"><p class="num">01</p><p class="nam">Schritt</p><p class="des">Kurzbeschreibung</p></div>
+    <div class="step"><p class="num">02</p><p class="nam">Schritt</p><p class="des">Kurzbeschreibung</p></div>
+    <div class="step"><p class="num">03</p><p class="nam">Schritt</p><p class="des">Kurzbeschreibung</p></div>
+    <div class="step"><p class="num">04</p><p class="nam">Schritt</p><p class="des">Kurzbeschreibung</p></div>
+  </div>
+  <div class="player player-fill">
+    <div class="player-head"><span class="pt">Titel des Videos</span><span class="pm">Video · 2:11</span></div>
+    <div class="player-stage">
+      <video preload="none" controls poster="./media/beispiel-poster.jpg">
+        <source src="./media/beispiel.mp4" type="video/mp4">
+        <track kind="subtitles" srclang="de" label="Untertitel" src="./media/beispiel.vtt" default>
+      </video>
+      <div class="start"><button type="button">Video abspielen</button></div>
+      <a class="pdf-play" href="https://beispiel.de/videos/beispiel.mp4"><span>Video ansehen</span></a>
+    </div>
+    <a class="video-link" href="https://beispiel.de/videos/beispiel.mp4">Video im Browser öffnen: beispiel.de/videos/beispiel.mp4</a>
+  </div>
+  <aside class="notes">player-fill füllt den Rest der Folie. Die öffentliche Adresse in pdf-play und video-link muss zur --video-basis von versand_bauen.py passen.</aside>
+</section>
+
+<!-- 7 · Diagramm -->
+<section class="slide">
+  <p class="eyebrow">Architektur — vereinfacht</p>
+  <h2>Drei Stationen, ein kontrollierter Weg.</h2>
+  <div class="diagram-wrap">
+  <svg class="diagram" viewBox="0 0 1520 400" role="img" aria-label="Diagramm: Quelle, Verarbeitung, Ergebnis">
+    <rect x="20" y="90" width="380" height="220" fill="var(--d-surface)" stroke="var(--d-line-strong)" stroke-width="2"/>
+    <text class="dm" x="52" y="144" font-size="22" fill="var(--d-mark)" letter-spacing="3">QUELLE</text>
+    <text class="dt" x="52" y="196" font-size="31" fill="var(--d-ink)">Station eins</text>
+    <text x="52" y="240" font-size="24" fill="var(--d-ink-2)">Eine Zeile Erklärung</text>
+    <path d="M400 200 H470" stroke="var(--d-accent)" stroke-width="3"/>
+    <path d="M456 186 L472 200 L456 214" fill="none" stroke="var(--d-accent)" stroke-width="3" stroke-linecap="square"/>
+    <rect x="480" y="40" width="560" height="320" fill="var(--d-surface)" stroke="var(--d-accent)" stroke-width="3"/>
+    <text class="dm" x="514" y="94" font-size="22" fill="var(--d-mark)" letter-spacing="3">VERARBEITUNG</text>
+    <text class="dt" x="514" y="148" font-size="31" fill="var(--d-ink)">Station zwei</text>
+    <rect x="514" y="190" width="492" height="130" fill="var(--d-ai-bg)" stroke="var(--d-ai-line)" stroke-width="2"/>
+    <text class="dt" x="544" y="244" font-size="29" fill="var(--d-ai)">Teilschritt</text>
+    <text x="544" y="286" font-size="24" fill="var(--d-ai-text)">Eine Zeile Erklärung</text>
+    <path d="M1040 200 H1110" stroke="var(--d-accent)" stroke-width="3"/>
+    <path d="M1096 186 L1112 200 L1096 214" fill="none" stroke="var(--d-accent)" stroke-width="3" stroke-linecap="square"/>
+    <rect x="1120" y="90" width="380" height="220" fill="var(--d-surface)" stroke="var(--d-line-strong)" stroke-width="2"/>
+    <text class="dm" x="1152" y="144" font-size="22" fill="var(--d-mark)" letter-spacing="3">ERGEBNIS</text>
+    <text class="dt" x="1152" y="196" font-size="31" fill="var(--d-ink)">Station drei</text>
+    <text x="1152" y="240" font-size="24" fill="var(--d-ink-2)">Eine Zeile Erklärung</text>
+  </svg>
+  </div>
+  <p class="swipe-hint">Die Grafik lässt sich seitlich wischen.</p>
+  <aside class="notes">Diagramme als Inline-SVG, Farben nur über var(--d-*) — dann folgen sie dem Hell/Dunkel-Schalter. Schrift im viewBox ≥ 22, bei viewBox-Breite 1520.</aside>
+</section>
+
+<!-- 8 · Gegenüberstellung mit Hochformat-Bild -->
+<section class="slide slide-split">
+  <div class="split-main">
+    <p class="eyebrow">Gegenüberstellung</p>
+    <h2>Zwei Sichten, ein Abgleich.</h2>
+    <p class="eyebrow" style="color:var(--d-ink-2);letter-spacing:.12em">Von Menschen, nicht gemessen</p>
+    <div class="pair">
+      <div class="card card-human"><p class="eyebrow">Sicht A</p><p>„Ein Zitat in einem Satz.“</p></div>
+      <span class="match-word">Gleich</span>
+      <div class="card card-human"><p class="eyebrow">Sicht B</p><p>„Die zweite Sicht.“</p></div>
+    </div>
+    <ul class="points">
+      <li>Ein Punkt zur Einordnung.</li>
+    </ul>
+  </div>
+  <figure class="shot">
+    <img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20300%20400%22%3E%3Crect%20width%3D%22300%22%20height%3D%22400%22%20fill%3D%22%23E9E6E0%22%2F%3E%3Ctext%20x%3D%22150%22%20y%3D%22205%22%20font-family%3D%22monospace%22%20font-size%3D%2218%22%20text-anchor%3D%22middle%22%20fill%3D%22%235C6470%22%3EHOCHFORMAT%203%3A4%3C%2Ftext%3E%3C%2Fsvg%3E" alt="Platzhalter für ein Bild im Hochformat" width="300" height="400">
+    <figcaption>Unterschrift unter dem Bild.</figcaption>
+  </figure>
+  <aside class="notes">slide-split: Text links, hohes Bild rechts (Screenshot). Die Bildhöhe ist fest, die Breite folgt dem Seitenverhältnis.</aside>
+</section>
+
+<!-- 9 · Zwei Karten mit Titeln -->
+<section class="slide">
+  <p class="eyebrow">Was wir brauchen</p>
+  <h2>Zwei Gruppen, je eine Liste.</h2>
+  <div class="cols">
+    <div class="card">
+      <p class="eyebrow card-title">Gruppe A</p>
+      <ul class="points"><li>Erster Punkt.</li><li>Zweiter Punkt.</li></ul>
+    </div>
+    <div class="card">
+      <p class="eyebrow card-title">Gruppe B</p>
+      <ul class="points"><li>Erster Punkt.</li><li>Zweiter Punkt.</li><li>Dritter Punkt.</li></ul>
+    </div>
+  </div>
+  <aside class="notes">card + eyebrow.card-title + ul.points.</aside>
+</section>
+
+<!-- 10 · Abschluss -->
+<section class="slide slide--brand">
+  <p class="eyebrow">Nächste Schritte</p>
+  <h2>So geht es weiter.</h2>
+  <div class="steps" style="--n:3;max-width:1200px">
+    <div class="step"><p class="num">01</p><p class="nam">Schritt</p><p class="des">Kurzbeschreibung</p></div>
+    <div class="step"><p class="num">02</p><p class="nam">Schritt</p><p class="des">Kurzbeschreibung</p></div>
+    <div class="step"><p class="num">03</p><p class="nam">Schritt</p><p class="des">Kurzbeschreibung</p></div>
+  </div>
+  <p class="lead">Welche Fragen haben Sie?</p>
+  <p class="claim"><a href="mailto:kontakt@beispiel.de">kontakt@beispiel.de</a> · <a href="https://beispiel.de">beispiel.de</a></p>
+  <aside class="notes">Schlussfolie: nächste Schritte, Frage ans Publikum, Kontakt.</aside>
+</section>

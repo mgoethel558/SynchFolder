@@ -1,0 +1,22 @@
+2026/10/05-17:40:42.425 a244 Reusing MANIFEST C:\Users\mgoethel\OneDrive - Deloitte (O365D)\Documents\Projekt\SynchFolder\Temp\.pw-profile\Default\IndexedDB\https_lohgroup.sharepoint.com_0.indexeddb.leveldb/MANIFEST-000001
+2026/10/05-17:40:42.456 a244 Recovering log #7
+2026/10/05-17:40:42.486 a244 Reusing old log C:\Users\mgoethel\OneDrive - Deloitte (O365D)\Documents\Projekt\SynchFolder\Temp\.pw-profile\Default\IndexedDB\https_lohgroup.sharepoint.com_0.indexeddb.leveldb/000007.log 
+2026/10/05-17:40:52.050 8b74 Level-0 table #13: started
+2026/10/05-17:40:52.116 8b74 Level-0 table #13: 1642787 bytes OK
+2026/10/05-17:40:52.121 8b74 Delete type=0 #7
+2026/10/05-17:40:52.138 8b74 Compacting 1@1 + 1@2 files
+2026/10/05-17:40:52.225 8b74 Generated table #14@1: 2908 keys, 1569120 bytes
+2026/10/05-17:40:52.226 8b74 Compacted 1@1 + 1@2 files => 1569120 bytes
+2026/10/05-17:40:52.228 8b74 compacted to: files[ 0 0 2 0 0 0 0 ]
+2026/10/05-17:40:52.229 8b74 Delete type=2 #9
+2026/10/05-17:40:52.229 8b74 Delete type=2 #13
+2026/10/05-17:40:52.314 8b74 Level-0 table #16: started
+2026/10/05-17:40:52.391 8b74 Level-0 table #16: 1673827 bytes OK
+2026/10/05-17:40:52.395 8b74 Delete type=0 #12
+2026/10/05-17:40:52.411 8b74 Compacting 1@1 + 1@2 files
+2026/10/05-17:40:52.537 8b74 Generated table #17@1: 3152 keys, 2130061 bytes
+2026/10/05-17:40:52.565 8b74 Generated table #18@1: 1540 keys, 276909 bytes
+2026/10/05-17:40:52.565 8b74 Compacted 1@1 + 1@2 files => 2406970 bytes
+2026/10/05-17:40:52.567 8b74 compacted to: files[ 0 0 3 0 0 0 0 ]
+2026/10/05-17:40:52.569 8b74 Delete type=2 #14
+2026/10/05-17:40:52.569 8b74 Delete type=2 #16

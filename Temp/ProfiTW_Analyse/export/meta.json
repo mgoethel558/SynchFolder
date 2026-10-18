@@ -1,0 +1,25 @@
+{
+  "generated_at": "2026-07-07T20:59:36.134446+00:00",
+  "attribution": "Datenbasis u.a. Transfermarkt (via Kaggle davidcariboo/player-scores). Nur eigene Aggregationen.",
+  "observed_leagues": [
+    "CL",
+    "GB1",
+    "L1",
+    "L2",
+    "L3",
+    "U17-BL",
+    "U17-NT",
+    "U19-BL",
+    "U19-NT",
+    "U21-NT"
+  ],
+  "counts": {
+    "goalkeepers": 5,
+    "clubs": 5,
+    "transfer_events": 3,
+    "leagues_exported": 5,
+    "clubs_exported": 4,
+    "feed_items": 3
+  },
+  "note": "Nur eigene Aggregationen. Keine Marktwerte, keine rohen Fremd-Tabellen."
+}

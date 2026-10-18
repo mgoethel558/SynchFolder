@@ -1,0 +1,9 @@
+{
+  "name": "Deloitte",
+  "beschreibung": "Nach dem Look des deloitte-pdf-Generators: schwarze Titelfolie, Deloitte-Grün #86BC25, dunkelgrün #046A38 als Textakzent, Segoe UI. Systemschriften (keine Einbettung).",
+  "schriften": [],
+  "lockup": "<span class=\"lockup\"><span class=\"wm\"><b>Deloitte</b><span class=\"dot\">.</span></span></span>",
+  "favicon": "<link rel=\"icon\" href=\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%23000'/%3E%3Ccircle cx='12' cy='11' r='2.4' fill='%2386BC25'/%3E%3C/svg%3E\">",
+  "titel_praefix": "Deloitte · ",
+  "standard": false
+}

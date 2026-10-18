@@ -1,0 +1,4 @@
+{
+  "_comment": "Diese Datei nach 'config.local.json' kopieren und die SharePoint-Ordner-URL eintragen. Die URL ist der Ordner, in dem die F2S_Workshop_Outcome_*.xlsx liegen. Freigabe-Links (.../:f:/r/...) und normale Ordner-Links werden unterstuetzt.",
+  "folder_url": "https://IHRE-FIRMA.sharepoint.com/:f:/r/sites/IHRE-SITE/Shared%20Documents/.../R2R_Finance"
+}

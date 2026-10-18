@@ -1,0 +1,48 @@
+/* Deloitte — Theme nach dem Look des deloitte-pdf-Generators.
+ * Signatur: schwarze Titel-/Schlussfolie mit weißem „Deloitte."-Schriftzug und grünem
+ * Punkt, Deloitte-Grün (#86BC25) als Signalfarbe, dunkelgrün (#046A38) für Akzenttext.
+ * Systemschriften (Segoe UI / Open Sans) wie im PDF — keine Einbettung, Aussehen je Rechner.
+ *
+ * WCAG AA: Reines #86BC25 ist als Text zu hell (nur 3:1). Daher im HELLEN Set der
+ * Textakzent = dunkelgrün #046A38, das Signalgrün sitzt nur auf Flächen/Balken/Punkten
+ * (schwarze Titelfolie, Fortschrittsbalken, Button). Im DUNKLEN Set trägt das Signalgrün
+ * als Textakzent. Nach jeder Wertänderung mit scripts/kontrast.py neu prüfen. */
+:root{
+  --d-bg:#F7F8F4; --d-surface:#FFFFFF; --d-surface-sunk:#ECEFE7;
+  --d-ink:#121212; --d-ink-2:#3A3D3B; --d-ink-3:#5C5F5C; --d-ink-4:#75787B;
+  --d-line:#D9DBDB; --d-line-strong:#BFC2C0;
+  --d-accent:#046A38; --d-accent-strong:#023D20; --d-accent-mid:#0E8A49;
+  --d-accent-soft:#86BC25; --d-accent-pale:#D6E8BD;
+  --d-mark:#046A38;
+  --d-ai:#1F5673; --d-ai-bg:#EAF1F4; --d-ai-line:#CFE0E7; --d-ai-text:#163F54;
+  --d-font-display:"Segoe UI","Open Sans",Arial,Helvetica,sans-serif;
+  --d-font-text:"Segoe UI","Open Sans",Arial,Helvetica,sans-serif;
+  --d-font-data:ui-monospace,"Cascadia Code","Cascadia Mono",Consolas,monospace;
+  --d-wm-weight:700;
+  --d-radius-action:3px; --d-radius-surface:2px;
+  --d-shadow:0 8px 24px rgba(0,0,0,.12); --d-dur:120ms;
+
+  --d-brand-bg:#000000; --d-on-brand:#FFFFFF; --d-on-brand-2:#C9CCCB;
+  --d-on-brand-mark:#86BC25; --d-on-brand-logo:#FFFFFF;
+  --d-on-brand-line:#3A3D3B; --d-on-brand-hover:#1A1A1A; --d-on-brand-hint:#C9CCCB;
+  --d-on-brand-track:#3A3D3B; --d-on-brand-fill:#86BC25;
+
+  --d-player-bg:#111314; --d-player-line:#3A3D3B; --d-player-line-2:#1E2021;
+  --d-player-ink:#F1F2F2; --d-player-meta:#A9CB6B; --d-player-video:#000000;
+  --d-player-btn:#86BC25; --d-player-btn-hover:#6FA01E; --d-player-btn-ink:#111314;
+}
+:root[data-theme="dark"]{
+  --d-bg:#0E100E; --d-surface:#171A16; --d-surface-sunk:#0A0C0A;
+  --d-ink:#F1F2F0; --d-ink-2:#C6C9C4; --d-ink-3:#9CA09A; --d-ink-4:#6E726C;
+  --d-line:#262A24; --d-line-strong:#3A3F38;
+  --d-accent:#86BC25; --d-accent-strong:#A6D957; --d-accent-mid:#6FA01E;
+  --d-accent-soft:#3E5A17; --d-accent-pale:#20300C;
+  --d-mark:#86BC25;
+  --d-ai:#6FB3D4; --d-ai-bg:#132029; --d-ai-line:#243742; --d-ai-text:#BBDCEC;
+}
+
+/* Wortmarke „Deloitte." — Schriftzug folgt der Umgebung (ink/weiß), der Punkt bleibt
+ * immer Deloitte-Grün. So wie das Cover im PDF-Generator. */
+.lockup .wm .dot{color:#86BC25;font-weight:700;}
+.chrome .lockup .wm{color:var(--d-ink);}
+body.on-brand .chrome .lockup .wm{color:var(--d-on-brand-logo);}

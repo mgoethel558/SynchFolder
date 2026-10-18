@@ -1,0 +1,26 @@
+{
+  "club_id": "15",
+  "club_name": "Borussia Dortmund",
+  "goalkeeper_count": 2,
+  "keepers": [
+    {
+      "player_id": "2",
+      "name": "Sven Ulreich",
+      "from_date": null,
+      "to_date": null,
+      "tenure_years": null,
+      "origin": "transfer"
+    },
+    {
+      "player_id": "3",
+      "name": "Gregor Kobel",
+      "from_date": null,
+      "to_date": null,
+      "tenure_years": null,
+      "origin": "transfer"
+    }
+  ],
+  "origin_breakdown": {
+    "transfer": 2
+  }
+}

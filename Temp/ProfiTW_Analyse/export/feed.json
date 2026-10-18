@@ -1,0 +1,47 @@
+[
+  {
+    "transfer_id": "t1",
+    "player_id": "4",
+    "player_name": "Alexander Nübel",
+    "from_club": "Bayern München",
+    "to_club": "VfB Stuttgart",
+    "from_league": "L1",
+    "to_league": "L1",
+    "transfer_date": "2023-07-01",
+    "season": "23/24",
+    "window": "summer",
+    "type": "permanent",
+    "is_loan": false,
+    "is_free": false
+  },
+  {
+    "transfer_id": "t2",
+    "player_id": "2",
+    "player_name": "Sven Ulreich",
+    "from_club": "Bayern München",
+    "to_club": "Borussia Dortmund",
+    "from_league": "L1",
+    "to_league": "L1",
+    "transfer_date": "2022-08-15",
+    "season": "22/23",
+    "window": "summer",
+    "type": "permanent",
+    "is_loan": false,
+    "is_free": false
+  },
+  {
+    "transfer_id": "t3",
+    "player_id": "3",
+    "player_name": "Gregor Kobel",
+    "from_club": "SC Freiburg II",
+    "to_club": "Borussia Dortmund",
+    "from_league": "L2",
+    "to_league": "L1",
+    "transfer_date": "2021-07-01",
+    "season": "21/22",
+    "window": "summer",
+    "type": "permanent",
+    "is_loan": false,
+    "is_free": false
+  }
+]

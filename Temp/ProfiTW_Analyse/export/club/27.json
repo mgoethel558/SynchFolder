@@ -1,0 +1,26 @@
+{
+  "club_id": "27",
+  "club_name": "Bayern München",
+  "goalkeeper_count": 2,
+  "keepers": [
+    {
+      "player_id": "2",
+      "name": "Sven Ulreich",
+      "from_date": null,
+      "to_date": null,
+      "tenure_years": null,
+      "origin": "unknown"
+    },
+    {
+      "player_id": "4",
+      "name": "Alexander Nübel",
+      "from_date": null,
+      "to_date": null,
+      "tenure_years": null,
+      "origin": "unknown"
+    }
+  ],
+  "origin_breakdown": {
+    "unknown": 2
+  }
+}

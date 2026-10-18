@@ -1,0 +1,163 @@
+/* style.css -- Design uebernommen aus der Vorlage LOH_F2S_Academy_v4.html
+   (Farben, Typografie, Komponenten) und auf das Dashboard angepasst. */
+
+:root{
+  --loh:#e50043;         /* Primaerfarbe */
+  --r1:#c20639;--r2:#a70a30;--r3:#820a23;--r4:#650616;
+  --ink:#222;--muted:#667085;--line:#e6e7ea;--bg:#f6f7f9;--card:#fff;
+  --ok:#157347;          /* erledigt */
+  --prog:#2563eb;        /* in Arbeit */
+  --open:#b7791f;        /* offen */
+  --na:#9aa3af;          /* nicht relevant */
+  --unk:#d14343;         /* unbekannt */
+  --shadow:0 12px 34px #27131812;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font:15px/1.5 Arial,"Segoe UI",sans-serif}
+
+/* --- Header / Top-Bar --- */
+.top{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 2px 14px #0000000a}
+.nav{max-width:1320px;margin:auto;padding:12px 22px;display:flex;align-items:center;gap:14px}
+.brand{font-weight:900;letter-spacing:-.02em;font-size:17px}
+.brand b{color:var(--loh)}
+.brand small{display:block;font-weight:600;color:var(--muted);font-size:12px;letter-spacing:0}
+.spacer{flex:1}
+.updated{font-size:12px;color:var(--muted);text-align:right;margin-right:6px}
+.updated b{color:var(--ink);font-weight:800}
+.btn{border:1px solid var(--line);background:#fff;border-radius:999px;padding:9px 15px;font-weight:800;cursor:pointer;font-size:14px;white-space:nowrap}
+.btn:hover{background:#fafafa}
+.btn.primary{background:var(--loh);color:#fff;border-color:var(--loh)}
+.btn.primary:hover{background:var(--r2)}
+.btn:disabled{opacity:.55;cursor:default}
+.lang{border:1px solid var(--line);background:#fff;border-radius:999px;padding:8px 12px;font-weight:800;cursor:pointer}
+.lang.active{background:var(--loh);color:#fff;border-color:var(--loh)}
+.langgroup{display:flex;gap:4px}
+
+/* --- Progressbar beim Refresh --- */
+.bar{height:4px;background:#eee}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--loh),var(--r4));transition:.3s}
+
+/* --- Toast / Statusmeldung --- */
+.toast{position:fixed;right:20px;bottom:20px;z-index:100;max-width:420px;
+  background:#fff;border:1px solid var(--line);border-left:5px solid var(--loh);
+  border-radius:12px;padding:14px 16px;box-shadow:var(--shadow);display:none}
+.toast.show{display:block}
+.toast.ok{border-left-color:var(--ok)}
+.toast.err{border-left-color:var(--unk)}
+.toast .spin{display:inline-block;width:14px;height:14px;border:2px solid #ccc;
+  border-top-color:var(--loh);border-radius:50%;animation:spin .8s linear infinite;margin-right:8px;vertical-align:-2px}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* --- Layout --- */
+.wrap{max-width:1320px;margin:auto;padding:24px 22px 70px}
+section{background:#fff;border:1px solid var(--line);border-radius:20px;padding:24px;box-shadow:var(--shadow);margin-bottom:22px}
+h2{font-size:22px;letter-spacing:-.02em;margin:0 0 4px}
+.sub{color:var(--muted);font-size:13px;margin:0 0 16px}
+
+/* --- Grafik-Grid --- */
+.charts{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+.chartcard{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px}
+.chartcard h3{margin:0 0 2px;font-size:16px}
+.chartcard .desc{color:var(--muted);font-size:12px;margin:0 0 12px}
+.chartbox{position:relative;height:300px}
+.chart-toolbar{display:flex;gap:8px;align-items:center;margin-bottom:10px;font-size:13px}
+.chart-toolbar select{border:1px solid var(--line);border-radius:8px;padding:5px 8px;font:inherit}
+
+/* --- KPI-Karten --- */
+.kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
+.kpi{border:1px solid var(--line);border-radius:16px;padding:18px;background:var(--card);border-top:4px solid var(--loh)}
+.kpi .label{font-size:13px;color:var(--muted);font-weight:700}
+.kpi .big{font-size:34px;font-weight:900;line-height:1.1;margin:6px 0 2px}
+.kpi .share{font-size:13px;color:var(--ok);font-weight:800}
+.kpi .share .barmini{height:6px;background:#eee;border-radius:4px;margin-top:6px;overflow:hidden}
+.kpi .share .barmini i{display:block;height:100%;background:var(--ok)}
+
+/* --- Tabelle --- */
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:left}
+th{background:var(--r4);color:#fff;cursor:pointer;user-select:none;white-space:nowrap;font-size:13px}
+th .arrow{opacity:.6;font-size:11px}
+td.num,th.num{text-align:center}
+tr.lob-row{font-weight:700;cursor:pointer}
+tr.lob-row:hover{background:#fff0f4}
+tr.lob-row .toggle{display:inline-block;width:14px;color:var(--loh);font-weight:900}
+tr.area-row{background:#fafbfc;font-weight:400;font-size:13px;color:#444}
+tr.area-row td:first-child{padding-left:30px}
+tr.total-row{font-weight:900;background:#f1f2f4}
+tr.total-row td{border-top:2px solid var(--r4)}
+
+/* Status-Pills in Zellen */
+.pill{display:inline-block;min-width:22px;text-align:center;border-radius:6px;padding:1px 6px;margin:0 1px;font-size:12px;font-weight:800;color:#fff}
+.pill.offen{background:var(--open)}
+.pill.inarbeit{background:var(--prog)}
+.pill.erledigt{background:var(--ok)}
+.pill.nichtrelevant{background:var(--na)}
+.pill.unbekannt{background:var(--unk)}
+.pill.zero{background:#e6e7ea;color:#9aa3af}
+.celltyp{white-space:nowrap}
+
+/* --- Warnungen --- */
+.warnbox{background:#fff8ee;border:1px solid #f0d9a8;border-left:5px solid var(--open);border-radius:0 12px 12px 0;padding:12px 16px;margin-bottom:22px;font-size:13px}
+.warnbox h3{margin:0 0 6px;font-size:14px;color:#8a5a08}
+.warnbox ul{margin:4px 0 0;padding-left:18px}
+
+/* --- leerer Zustand --- */
+.empty{text-align:center;padding:60px 20px;color:var(--muted)}
+.empty h2{color:var(--ink)}
+.empty .big{font-size:52px;margin-bottom:10px}
+
+.footer{text-align:center;color:var(--muted);padding:24px;font-size:12px}
+.hidden{display:none!important}
+
+/* --- Responsive --- */
+@media(max-width:1050px){
+  .charts{grid-template-columns:1fr}
+  .kpis{grid-template-columns:repeat(2,1fr)}
+}
+
+/* --- Print / PDF: A4 Querformat --- */
+@page{size:A4 landscape;margin:10mm}
+@media print{
+  .top,.toast,.chart-toolbar,.btn,.lang,.langgroup{display:none!important}
+  body{background:#fff}
+  .wrap{max-width:none;padding:0}
+  section{box-shadow:none;border:1px solid #ccc;break-inside:avoid;page-break-inside:avoid;margin-bottom:12px}
+  .charts{grid-template-columns:repeat(2,1fr);gap:12px}
+  .chartbox{height:260px}
+  .chartcard{break-inside:avoid;page-break-inside:avoid}
+  .kpis{grid-template-columns:repeat(5,1fr)}
+  .print-header{display:block!important}
+}
+.print-header{display:none;margin-bottom:12px}
+.print-header h1{font-size:20px;margin:0 0 2px}
+.print-header .meta{font-size:12px;color:#555}
+
+/* --- Klickbare Zahlen/Pills --- */
+.pill.clickable, .attrpill.clickable, .miniclick.clickable{cursor:pointer}
+.pill.clickable:hover{outline:2px solid #0003;outline-offset:1px}
+.attrpill{display:inline-block;padding:2px 8px;border-radius:6px;background:#f1f2f4;font-size:13px}
+.attrpill b{color:var(--open)}
+.attrpill.clickable:hover{background:#ffe3ec}
+.miniclick{display:inline-block;min-width:16px}
+.miniclick.clickable{color:var(--loh);font-weight:800;text-decoration:underline;text-underline-offset:2px}
+.miniclick.zero{color:#9aa3af}
+
+/* --- Modal (Drill-down) --- */
+.modal{position:fixed;inset:0;z-index:200;background:#0006;display:none;align-items:flex-start;justify-content:center;padding:40px 16px;overflow:auto}
+.modal.show{display:flex}
+.modal-box{background:#fff;border-radius:18px;max-width:1150px;width:100%;box-shadow:0 30px 80px #0005;overflow:hidden}
+.modal-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;padding:20px 24px;border-bottom:1px solid var(--line);background:var(--r4);color:#fff}
+.modal-head h3{margin:0;font-size:19px}
+.modal-scope{font-size:13px;opacity:.85;margin-top:3px}
+.modal-close{background:#ffffff22;border:1px solid #ffffff55;color:#fff;border-radius:8px;width:34px;height:34px;font-size:16px;cursor:pointer;flex:none}
+.modal-close:hover{background:#ffffff33}
+.modal-body{padding:14px 20px 22px;max-height:70vh;overflow:auto}
+table.detail{width:100%;border-collapse:collapse;font-size:13px}
+table.detail th{background:#f1f2f4;color:var(--ink);position:sticky;top:0;text-align:left;padding:9px 10px;border-bottom:2px solid var(--line);cursor:default}
+table.detail td{padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+table.detail td.mono{font-family:Consolas,monospace;font-size:12px;white-space:nowrap}
+table.detail td.empty{text-align:center;color:var(--muted);padding:24px}
+table.detail a{color:var(--loh);font-weight:900;text-decoration:none;font-size:15px}
+@media print{.modal{display:none!important}}
