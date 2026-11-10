@@ -1,0 +1,37 @@
+Document- & Reporting-Compliance (5XU)
+Überblick
+Mit SAP Document and Reporting Compliance (ehemals SAP S/4HANA Cloud für erweitertes Compliance-Reporting und SAP Document Compliance) können Kunden elektronische Rechnungsstellung (E-Invoicing), elektronisches Reporting (E-Reporting) und gesetzliche Meldepflichten einhalten. Mit der Aktivierung dieses Umfangsbestandteils können Sie die Sichtbarkeit erweiterter Funktionen auf Länder- oder Regionsebene aktivieren und steuern. Eine vollständige Liste der erweiterten Funktionen finden Sie in der neuesten Version der Funktion SAP S/4HANA Cloud Public Edition und der Umfangsbeschreibung.
+
+Wichtiger Prozessablauf
+Sichtbarkeit der erweiterten Funktionen von SAP Document and Reporting Compliance ermöglichen
+
+Geschäftlicher Nutzen
+Unterstützung für Geschäftspartnerkorrespondenz erhalten
+
+Workflow-Funktion für externes Meldewesen aktivieren
+
+Analysen durchführen und Daten für gesetzlich vorgeschriebene Berichte und elektronische Belege (E-Dokumente) in der Vorschau anzeigen
+
+Manuelle Anpassungen für gesetzliche Berichte vornehmen
+
+Mit SAP CoPilot zusammenarbeiten
+
+E-Rechnungen und E-Belege in Echtzeitszenarios austauschen
+
+Passen Sie das externe Meldewesen und E-Invoicing-Szenarios an Ihre Anforderungen an, indem Sie unsere Lösung erweitern und Ihre eigenen Berichte und Szenarios erstellen.
+
+Dieser Umfangsbestandteil ist von der Standardaktivierung ausgeschlossen.
+
+Dieser Umfangsbestandteil erfordert eine zusätzliche Lizenz, wenn der Kunde die erweiterten Funktionen von Document and Reporting Compliance (ehemals Teil des erweiterten Compliance-Reportings) verwendet.
+
+Für Kunden mit einer Lizenz für SAP S/4HANA Cloud Public Edition vor Q4/2021 gilt Folgendes:
+
+Wenn mehr als 24 Meldungen mit dem erweiterten Compliance-Reporting vorgenommen werden, ist entweder eine zusätzliche Lizenz erforderlich, oder die erweiterten Funktionen müssen deaktiviert werden.
+
+Funktionsweise der 24 Deklarationen:
+
+Identifizieren Sie die Anzahl der rechtlichen Einheiten in allen Ländern/Regionen und die entsprechenden gesetzlichen Berichte, die vom Kunden benötigt werden. Summieren Sie die Anzahl der erforderlichen Meldungen pro Rechtsträger, pro Bericht pro Jahr (z.B. ein Buchungskreis mit einer monatlichen Umsatzsteuermeldung = 12 Meldungen). Zusätzliche Läufe oder Korrekturläufe werden ebenfalls gezählt.
+
+So schalten Sie erweiterte Funktionen aus:
+
+Für Kunden, die SAP S/4HANA Cloud Public Edition vor Q4/2021 gekauft haben, sind die erweiterten Funktionen automatisch sichtbar. Wenn SAP Document and Reporting Compliance (5XU) aktiviert ist, wird die Sichtbarkeit gemäß der Pflege dieses Umfangsbestandteils gesteuert.

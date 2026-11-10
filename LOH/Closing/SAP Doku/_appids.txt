@@ -1,0 +1,48 @@
+########## Closing.pdf
+F2581 || Manage Posting Period Variants
+F2293 || Manage Posting Periods
+F2293). || App
+F4684 || Manage Posting Periods – Cost Accounting
+F1598 || You can use this app to manage your recurring journal entries.
+F4683 || Balance Carryforward Status
+F3302 || 7/7/26, 5:45 PM
+F3625 || Manage Workflows for Purchase Order Accruals Review
+F3928 || Display Purchase Order Accruals
+F3517 || Review Purchase Order Accruals - My Inbox
+F3552 || Review Purchase Order Accruals - For Cost Accountant
+F3732 || Analyze Accrual Postings
+F3778 || Describes available job options for accruals management in the Schedule Accruals Jobs app.
+F4899 || Display Accrual Object Items
+F4900 || Display Periodic Accrual Amounts
+F6107 || Display Service Entry Sheet Accruals
+F6108 || Review Service Entry Sheet Accruals - For Cost Accountant
+W0183 || Accrual Postings - With Simulation
+W0184 || Accrual Postings - Simulated / Posted
+F3753 || This app allows for detailed analysis, reporting, and reconciliation of Advanced Foreign Currency Valuation jobs.
+F1606 || Post Currency Adjustments
+F4670A || Verify Currency Adjustments - For Requester
+FAGLF101 || Regroup Receivables / Payables
+F107 || This app allows you to measure and recognize expected credit losses (ECL) as required by IFRS 9.
+F6386 || Manage Balance Validation Rules and Groups
+F7470 || Schedule Balance Validation Jobs
+F6387 || View Balance Validation Results
+F3303 || Monitor GR/IR Account Reconciliation
+F5796 || GR/IR Process Insights
+F1927 || 7/7/26, 5:45 PM
+F.19 || 7/7/26, 5:45 PM
+FSE0_XBRL || Financial Statement Data According to XBRL Taxonomy
+FAGLF101 || Regroup Receivables / Payables
+########## Tax.pdf
+S_ALR_87012357 || This topic tells you what you can do with the Create Advance Return on Sales/Purchase Tax app.
+S_ALR_87012365 || Display Tax Information per Country
+S_ALR_87012362 || eﬃciently manage and validate input tax data for tax on sales/purchases.
+FOT_TXA_MTP || Manage the proposed tax postings returned for your goods movements.
+F1597 || Post Tax Payables
+F3690 || Schedule Tax Jobs
+S_ALR_87012362 || Input Tax from Parked Documents
+FBTR_TRAN || VAT Refund (EU)
+F8218 || Schedule Tax Jobs for Cross-Border Transactions
+F2096 || Tax Declaration Reconciliation
+F2095 || Tax Reconciliation Account Balance
+WHT_CAL_SIM || Check your withholding tax settings and simulate withholding tax calculation.
+F7977 || 7/7/26, 5:37 PM

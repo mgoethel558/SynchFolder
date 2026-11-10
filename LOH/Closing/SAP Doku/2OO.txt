@@ -1,0 +1,19 @@
+Externe Steuerprüfung (2OO)
+Überblick
+Mit den Funktionen der externen Steuerprüfung können externe Steuerprüfer detaillierte Prüfungen der Konten eines Unternehmens mithilfe des direkten Auditorzugriffs durchführen. Auditoren können auf die Daten im schreibgeschützten Modus zugreifen, d.h. sie können mithilfe der Hardware und Software des Steuerpflichtigen auswählen, filtern und sortieren.
+
+Wichtiger Prozessablauf
+Prüfung mit der Standardauditstruktur anlegen
+
+Führen Sie die in der Standardauditstruktur aufgeführten Berichte und Transaktionen aus.
+
+Audit-Protokoll anzeigen
+
+Prüfungsjournal ausführen
+
+Steuerliche Abstimmung des Kontensaldos ausführen
+
+Abstimmung der Steuermeldung ausführen
+
+Geschäftlicher Nutzen
+Steuerrelevante Daten des Kunden im schreibgeschützten Modus direkt im System aufrufen und überprüfen
